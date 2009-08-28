@@ -2,3 +2,4 @@
 *.swp
 bin-debug/*
 bin-release/*
+Thumbs.db
