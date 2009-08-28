@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:component="fr.kapit.tourdeflex.component.*" 
+	xmlns:TDF="fr.kapit.tourdeflex.*" 
+	xmlns:KapLab="com.kapit.visualizer.*"
+	xmlns:visualizer="com.kapit.visualizer.*"
+	layout="absolute" 
+	creationComplete="init();"
+	backgroundGradientAlphas="[1.0, 1.0]" 
+	backgroundGradientColors="[#F0F0F0, #ECECEC]"
+	backgroundImage="assets/INDEXbgd.swf">
+
+	<!--
+		This application demonstrates how to use Visualizer component to display Hierarchical data in a Radial layout
+	-->
+
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import com.kapit.visualizer.events.VisualizerEvent;
+		    import com.pages.AbOUT;
+		    import com.pages.UploadForm;   
+            import com.pages.Rados;   
+			import mx.events.ListEvent;
+			import mx.controls.Image;
+			import mx.collections.XMLListCollection;
+			import com.kapit.visualizer.LayoutConstants;
+			import mx.managers.PopUpManager;
+            import mx.containers.TitleWindow;
+            import flash.geom.Point;
+      
+      	    import mx.controls.ToolTip;
+			import mx.controls.Image;
+			import com.kapit.visualizer.LayoutConstants;
+			import com.kapit.diagram.layouts.model.Node;
+			import mx.effects.easing.Elastic;    
+			import mx.controls.Image;
+            import mx.events.CloseEvent;
+            import flash.events.Event
+      
+      
+      
+      
+      
+
+  		    [Bindable]
+			private var linkStyle:Object={
+			    thickness:1,
+			    color:0x000000,
+			    alpha:0.6,
+			    pixelHinting:false,
+			    scaleMode:"normal",
+			    caps:"none",
+			    joints:null,
+			    miterLimit:3,
+			    onLength:5,
+			    offLength:5
+			};
+           // public function openWindow(event:Event):void
+           // {
+           // if(event.currentTarget.labelFields =="1"){
+           // PopUpManager.createPopUp(this,UploadForm,false);
+           // }
+           // else
+           // Alert.show("No Data");
+
+           // }
+
+			private function onCreationComplete():void
+			{
+				var dpLink:Array = [	{label: "Straight", data: LayoutConstants.STRAIGHT_LINE},
+						{label: "Straight polyline", data: LayoutConstants.STRAIGHT_POLYLINE},
+						{label: "Curved polyline", data: LayoutConstants.CURVED_POLYLINE},
+						{label: "Orth. polyline", data: LayoutConstants.ORTHOGONAL_STRAIGHT_POLYLINE},
+						{label: "Orth. curved", data: LayoutConstants.ORTHOGONAL_CURVED_POLYLINE}
+					];
+				linkDrawingTypeCombo.dataProvider = dpLink;
+				linkDrawingTypeCombo.selectedIndex = 4;
+				
+				var urlRequest:URLRequest = new URLRequest("xmlData/Network.xml");
+				var urlLoader:URLLoader = new URLLoader();
+				urlLoader.addEventListener(Event.COMPLETE, setDataprovider);
+				urlLoader.load(urlRequest);
+			}
+			
+			private function setDataprovider(event:Event):void
+			{
+				myVisualizer.dataProvider = new XML((event.currentTarget as URLLoader).data);
+			}
+			
+			private function setVisualizerProperties():void
+			{
+				myVisualizer.radialLayout.minimalRadius=20;
+				myVisualizer.radialLayout.nodesSpacing=20;
+				myVisualizer.radialLayout.overlappingAvoidMethod=LayoutConstants.DETERMINISTIC_OVERLAP_AVOID;
+				myVisualizer.radialLayout.edgeDrawing=LayoutConstants.ORTHOGONAL_CURVED_POLYLINE;
+				myVisualizer.radialLayout.rootSelectionPolicy=LayoutConstants.DIRECTED_ROOT_SELECTION;
+
+
+
+			}
+			
+			private function _onLinkDrawingTypeChange(event : ListEvent) : void
+			{
+				myVisualizer.radialLayout.edgeDrawing = linkDrawingTypeCombo.selectedItem.data;
+			}
+			 
+			
+     ]]>
+	</mx:Script>
+    <mx:XML id="vizdata" source="xmlData/Network.xml" >	
+    </mx:XML>
+
+<mx:ViewStack id="viewStack" width="100%" height="100%" >
+		<mx:VBox    id="NetworkImage"
+			        backgroundColor="#BDBDBD"
+		            width="100%"
+		            height="100%" backgroundAlpha="0.08">
+		<visualizer:Visualizer 
+		id="myVisualizer"
+		width="100%"
+		height="100%"
+		layout="{LayoutConstants.RADIAL_LAYOUT}"
+		linkStyle="{linkStyle}"
+		defaultNodeWidth="120"
+		defaultNodeHeight="120"
+		tooltipFields="@name"
+		labelFields="@num"
+		visibilityLevel="{visibility.value}"
+		expandOnDoubleClick="true"
+		multimediaClass="{Image}"
+		multimediaDataSource="{'@image'}"
+		creationComplete="onCreationComplete(); setVisualizerProperties()"
+		>		
+	 </visualizer:Visualizer>
+		    </mx:VBox>
+	<mx:VBox id="Network" backgroundColor="#5F5F5F"
+		            width="100%"
+		            height="100%" backgroundAlpha="0.77">
+	<KapLab:Visualizer id="NameVisualizer"
+		x="0" y="0" width="100%" height="100%"
+		backgroundColor="0xFFFFFF" 
+		dataProvider="{vizdata}" 
+		labelFields="{['@name']}"
+		name="{['@name']}"
+		tooltipFields="{['@num']}"
+		toolTipTitles="{['name']}"
+		layout="{LayoutConstants.BALLOON_LAYOUT}"
+		
+	/>
+		    </mx:VBox>
+		    <mx:VBox id="Artistpage" 
+		            width="100%"
+		            height="100%">
+		            <mx:Tree id="list"
+            dataProvider="{vizdata}"
+            showRoot="false"
+            labelField="@name"
+            rowCount="6"
+            width="250"
+            height="100%" />
+
+		    </mx:VBox>
+		    <mx:VBox backgroundColor="haloSilver"
+		            width="100%"
+		            height="100%" verticalGap="0">
+		        <mx:Label text="VBox 4" />
+		    </mx:VBox>
+		</mx:ViewStack>
+
+
+		<mx:ApplicationControlBar x="0" y="0"
+			 width="100%" dock="true"
+			 fillAlphas="[1.0, 1.0]" 
+			 fillColors="[#FFFFFF, #FFFFFF]" height="38">
+		<mx:Grid >
+			<mx:GridRow width="100%" height="100%">
+				<mx:GridItem width="100%" height="100%">
+					 <mx:LinkButton id="a0" label="Network" icon="@Embed(source='/assets/target.png')"
+						 click="viewStack.selectedChild=NetworkImage;" 
+					     buttonMode="true"  themeColor="#5E08B6"> 
+					 </mx:LinkButton>
+					<mx:LinkButton id="b0" label="Network" icon="@Embed(source='/assets/target.png')"
+						 click="viewStack.selectedChild=Network;" 
+					     buttonMode="true"  themeColor="#5E08B6"> 
+					 </mx:LinkButton>
+					<mx:LinkButton id="b1" label="Artists" icon="@Embed(source='/assets/artists.png')"
+						 click="viewStack.selectedChild=Artistpage;" 
+					     buttonMode="true"  themeColor="#5E08B6"> 
+					 </mx:LinkButton>
+					<mx:LinkButton click="PopUpManager.createPopUp(this,UploadForm,false);"
+						label="Upload Form" styleName="DarkLinkButton" color="#181818" 
+						icon="@Embed('assets/uploadfile.png')"  themeColor="#05679A" width="120">
+					               </mx:LinkButton>
+					<mx:LinkButton click="PopUpManager.createPopUp(this,AbOUT,false);"
+						label="AbOUT" styleName="DarkLinkButton" color="#181818" 
+						icon="@Embed('assets/people.png')"  themeColor="#05679A" width="95" fontWeight="bold">
+					               </mx:LinkButton>
+				</mx:GridItem>
+			</mx:GridRow>
+		</mx:Grid>
+		<mx:Spacer width="100%"/>
+		<mx:Grid>
+			<mx:GridRow width="100%" height="100%">
+				<mx:GridItem width="100%" height="100%">
+				
+				<mx:LinkButton toolTip="Fit to content" id="autoFit" 
+						click="myVisualizer.autoFit(),NameVisualizer.autoFit()" 
+						icon="@Embed(source='/assets/iconFit.png')" 
+						  width="30" themeColor="#9C04B7"/>
+					<mx:LinkButton toolTip="Zoom Out" id="zoomOut" 
+						click="myVisualizer.zoomContent(0.9),NameVisualizer.zoomContent(0.9)" 
+						icon="@Embed(source='/assets/iconZoomOut.png')" 
+					  buttonMode="true"  
+						 width="29" themeColor="#BB0367"/>
+					<mx:LinkButton toolTip="Zoom in" id="zoomIn" 
+						click="myVisualizer.zoomContent(1.1),NameVisualizer.zoomContent(1.1)" 
+						icon="@Embed(source='/assets/iconZoomIn.png')"  
+						buttonMode="true" 
+					      width="28" themeColor="#BF0458"/>
+					<mx:HSlider id="visibility" minimum="0" maximum="3" snapInterval="1" tickInterval="1" value="1" showTrackHighlight="true" themeColor="#44A703" height="28"/>
+					<mx:ComboBox id="linkDrawingTypeCombo" change="_onLinkDrawingTypeChange(event)" width="119" height="28"/>
+				</mx:GridItem>
+			</mx:GridRow>
+		</mx:Grid>
+		</mx:ApplicationControlBar>
+	<mx:VBox height="100%" verticalAlign="top" left="2" top="2">
+		
+		<mx:HBox width="100%">
+			<mx:Spacer height="26" />
+		</mx:HBox>
+		<mx:HBox>
+		</mx:HBox>
+		<mx:Spacer  width="100%"/>
+	</mx:VBox>
+			<mx:TextArea height="109" backgroundAlpha="0.0" borderStyle="none" editable="false" color="#979797" selectable="false" bottom="5" right="5" left="5">
+			<mx:text><![CDATA[Im öffentlichen Raum einer fremden Stadt formulieren junge serbische Künstler – ausgewählt und betreut vom Belgrader Bildhauer Mrdjan Bajić – ihre Fragen und Überlegungen zur eigenen Identität. Eben nicht nur durch Nation und Religion geprägt, wie vereinfachte Lesarten oft glauben machen, sind ihre Arbeiten und Interventionen in der Grazer Innenstadt – von der Franziskanerkirche über die Mur hinweg bis zur Barmherzigenkirche – in doppeltem Sinn kontextbezogen: Sie beziehen sich ebenso auf ihren konkreten Standort, wie auf die Herkunftsorte der Künstler und fordern damit die Auseinandersetzung in aller Öffentlichkeit.
+Koproduktion steirischer herbst & Institut für Kunst im öffentlichen Raum Steiermark
+Realisiert mit Mitteln von Kunst im öffentlichen Raum Steiermark]]></mx:text>
+			</mx:TextArea>
+			    <mx:Script>
+        <![CDATA[
+            private var timer:Timer;
+
+            private function init():void {
+                timer = new Timer(1000); /* 1000ms == 1second */
+                timer.addEventListener(TimerEvent.TIMER, onTimer);
+            }
+
+            private function onTimer(evt:TimerEvent):void {
+                var idx:uint = viewStack.selectedIndex;
+                var max:uint = viewStack.numChildren;
+
+                var newIdx:uint = ++idx % max;
+                viewStack.selectedIndex = newIdx;
+            }
+
+            private function startTimer():void {
+                if (!timer.running) {
+                    timer.start();
+                }
+            }
+
+            private function stopTimer():void {
+                if (timer.running) {
+                    timer.stop();
+                }
+            }
+        ]]>
+    </mx:Script>
+
+</mx:Application>
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
+    layout="absolute" 
+    title="Rados" 
+    creationComplete="centerWindow()"
+    showCloseButton="true" 
+    close="closeWindow()" 
+    horizontalAlign="center" 
+    verticalAlign="top">
+	
+	<mx:Script>
+        <![CDATA[
+            import mx.managers.PopUpManager;
+            
+            [Bindable]
+            private var version:String;
+            
+            public function centerWindow():void
+            {
+            	PopUpManager.centerPopUp(this);
+            }
+            
+            public function closeWindow():void
+            {
+            	PopUpManager.removePopUp(this);
+            }
+            
+       ]]>
+       
+	</mx:Script>
+	
+	
+	<mx:Text text="Global Substation Solutions Ltd (GSS) are a dynamic electrical engineering design consultancy, specializing in the provision of comprehensive control and protection system solutions.&#xa;Established in 2005 we have a core team of staff combining over 140 years experience in the industry.&#xa;In particular our design team has expertise and experience at all voltage levels (11kV through to 550KV) in the Transmission &amp; Distribution,&#x9;&#xa;Petrochemical, Power Station, and Renewable Power fields of the industry, both in the UK and overseas.&#xa;Familiarity with end users such as National Grid, Scottish Power, ADWEA (Abu Dhabi), FSK (Russia), Transelectrica (Romania) as well as ‘blue chip’ companies like GE, Areva, Toshiba, ABB, Siemens &amp; Mitsubishi ensures that GSS can offer a ‘world class’ design and project approach for any protection and control system solution.&#xa;&#xa;" width="550" height="195" top="40" paddingRight="10" paddingLeft="10" paddingBottom="10" paddingTop="10" left="185"/>
+	<mx:SWFLoader width="138" height="125" source="assets/layout/AboutGlobe.swf" left="20" top="40"/>
+	<mx:Label text="{version}"  x="10" y="232"/>
+</mx:TitleWindow>

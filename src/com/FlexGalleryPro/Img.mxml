@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- *************************************
+ * Flex Gallery Pro
+ * http://www.FlepStudio.org         
+ * © Author: Filippo Lughi           
+ * version 1.0                       
+ ************************************* -->
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+        layout="vertical"
+        showCloseButton="true"
+        width="400"
+        height="300"
+        close="titleWindow_close(event);">
+<mx:HTTPService
+	id="sending_changes" method="POST" resultFormat="text" result="DesChangesDone(event)" useProxy="false">
+	<mx:request>
+		<ID>{fac.text}</ID>
+		<name>{PicName.text}</name>
+   		<des>{description.text}</des>
+    </mx:request>
+</mx:HTTPService>
+<mx:HTTPService
+	id="deleting_images" method="POST" resultFormat="text" result="imageDeleted(event)" useProxy="false">
+	<mx:request>
+		<img>{del.text}</img>
+		<ID>{fac.text}</ID>
+    </mx:request>
+</mx:HTTPService>
+    <mx:Script>
+        <![CDATA[
+        	import mx.rpc.events.ResultEvent;
+        	import mx.controls.Button;
+            import mx.events.CloseEvent;
+            import mx.managers.PopUpManager;
+            import mx.controls.Alert;
+            import caurina.transitions.Tweener;
+            
+            public var counter:int=0;
+            public var counter_position:int;
+            public var des:String;
+            public var my_name:String;
+            public var my_parent:*;
+            private var startH:Number;
+            private var btn:Button;
+            private var a:Alert;
+            private var b:Alert;
+            private var message:String="Do you want delete this image ?";
+            private const ROW_COUNT:int=20;
+
+            private function titleWindow_close(evt:CloseEvent):void 
+            {
+            	Alert.yesLabel = "Accept";
+                Alert.noLabel = "Reject";
+                Alert.buttonWidth = 120;
+
+                a=Alert.show(
+                        message,
+                        title,
+                        Alert.NO | Alert.YES
+                    );
+                a.mx_internal::alertForm.mx_internal::textField.selectable = false;
+                a.defaultButton.addEventListener(MouseEvent.CLICK,setClick);
+            }
+            
+            private function setClick(evt:MouseEvent):void
+            {
+            	deleteImage();
+            }
+            
+            public function loadImage(s:String,t:String):void
+            {
+            	imageLoader.source=s;
+            	del.text="../"+s;
+                imageLoader.load();
+            }
+            
+            private function setSize():void
+            {
+            	var bb:Bitmap=imageLoader.content as Bitmap;
+            	bb.smoothing=true;
+            	imageLoader.scaleX=0.3;
+            	imageLoader.scaleY=0.3;
+            	
+            	fac.text=counter.toString();
+            	PicName.width=imageLoader.content.width/1.5;
+            	description.width=imageLoader.content.width/1.5;
+            	description.htmlText=des;
+            	PicName.htmlText=my_name;
+            	description.y=imageLoader.y+imageLoader.content.height+10;
+            	this.width=description.width+30;
+            	this.height+=imageLoader.height+description.height;
+            	this.x=100+(counter_position%ROW_COUNT)*30;
+				this.y=100+Math.floor(counter_position/ROW_COUNT)*50;
+            	//this.x=100+30*counter_position;
+            	//this.y=100;
+            	startH=this.height;
+            	this.visible=true;
+            	description.visible=true;
+            	
+            	PicName.addEventListener(Event.CHANGE,setChange);
+            	description.addEventListener(Event.CHANGE,setChange);
+            }
+            
+            private function setChange(evt:Event):void
+            {
+            	description.removeEventListener(Event.CHANGE,setChange);
+            	PicName.removeEventListener(Event.CHANGE,setChange);
+            	Tweener.addTween(this,{height:startH+30,time:0.3,transition:"linear",onComplete:createButton});
+            }
+            
+            private function createButton():void
+            {
+            	btn=new Button();
+            	btn.label="save changes";
+            	this.addChild(btn);
+            	btn.styleName="myBoldStyle";
+            	
+            	btn.addEventListener(MouseEvent.CLICK,setBtnClick);
+            }
+            
+            private function setBtnClick(evt:MouseEvent):void
+            {
+            	sendChanges();
+            	evt.target.enabled=false;
+            }
+            
+            private function sendChanges():void
+            {
+            	var boo:Boolean=true;
+            	sending_changes.url=FlexGalleryPro._path+"/PHP/changeDes.php";
+            	var s:String=PicName.text;
+            	for(var i:int=0;i<s.length;i++)
+            	{
+            		if(s.charAt(i)==='"')
+            			boo=false;
+            	}
+            	var ss:String=description.text;
+            	for(var j:int=0;j<ss.length;j++)
+            	{
+            		if(ss.charAt(j)==='"')
+            			boo=false;
+            	}
+            	if(boo)
+            		sending_changes.send();
+            	else
+            	{
+            		b=Alert.show(
+                        'typing " is not allowed',
+                        title
+                    );
+                    b.defaultButton.addEventListener(MouseEvent.CLICK,retry);
+            	}
+            }
+            
+            private function retry(evt:MouseEvent):void
+            {
+            	btn.enabled=true;
+            }
+            
+            private function DesChangesDone(event:ResultEvent):void
+            {
+            	var r:String=String(event.result);
+            	if(r=='ok')
+            		removeButton();
+            }
+            
+            private function removeButton():void
+            {
+            	this.removeChild(btn);
+            	Tweener.addTween(this,{height:startH,time:0.3,transition:"linear"});
+            	PicName.addEventListener(Event.CHANGE,setChange);
+            	description.addEventListener(Event.CHANGE,setChange);
+            	reset();
+            }
+            
+            private function reset():void
+            {
+            	for(var i:int=0;i<my_parent.win_array.length;i++)
+            	{
+            		if(i<my_parent.win_array.length-1)
+            			Tweener.addTween(my_parent.win_array[i],{alpha:0,time:1,transition:"linear"});
+            		else
+            			Tweener.addTween(my_parent.win_array[i],{alpha:0,time:1,transition:"linear",onComplete:removePopUps});
+            	}
+            }
+            
+            private function removePopUps():void
+            {
+            	for(var i:int=0;i<my_parent.win_array.length;i++)
+            	{
+            		PopUpManager.removePopUp(my_parent.win_array[i]);
+            	}
+            	my_parent.win_array=new Array();
+            	FlexGalleryPro.obj_array=new Array();
+            	my_parent.displayCMS();
+            }
+            
+            private function deleteImage():void
+            {
+            	deleting_images.url=FlexGalleryPro._path+"/PHP/deleteImage.php";
+            	deleting_images.send();
+            }
+            
+            private function imageDeleted(event:ResultEvent):void
+            {
+            	var r:String=String(event.result);
+            	if(r=='ok')
+            		PopUpManager.removePopUp(this);
+            }
+        ]]>
+    </mx:Script>
+    <mx:Label id="fac" visible="false" scaleX="0" scaleY="0" width="0" height="0"></mx:Label>
+    <mx:Label id="del" visible="false" scaleX="0" scaleY="0" width="0" height="0"></mx:Label>
+    <mx:Image id="imageLoader" autoLoad="false" complete="setSize();"></mx:Image>
+    <mx:Label text="Picture name:" styleName="myBoldStyle"></mx:Label>
+    <mx:TextArea id="PicName" width="372" height="18" styleName="myPlainStyle"></mx:TextArea>
+    <mx:Label text="Picture description:" styleName="myBoldStyle"></mx:Label>
+    <mx:TextArea id="description" width="372" height="115" styleName="myPlainStyle"></mx:TextArea>
+</mx:TitleWindow>
