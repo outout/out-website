@@ -10,7 +10,6 @@
 </compiler>
 <applications>
 <application path="test.mxml"/>
-<application path="test2.mxml"/>
 <application path="index.mxml"/>
 </applications>
 <modules/>
