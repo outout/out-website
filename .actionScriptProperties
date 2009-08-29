@@ -9,7 +9,6 @@
 <sourceAttachmentPath/>
 </compiler>
 <applications>
-<application path="test.mxml"/>
 <application path="index.mxml"/>
 </applications>
 <modules/>
