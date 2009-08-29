@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300" creationComplete="centerWindow()" title="TitleWindow" showCloseButton="true" close="closeWindow()">
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="600" height="400" creationComplete="centerWindow()" title="AbOUT" showCloseButton="true" close="closeWindow()">
 	
 	<mx:Script>
         <![CDATA[
@@ -18,7 +18,10 @@
        ]]>
        
 	</mx:Script>
-	
-	<mx:Label text="This is a sample TitleWindow." verticalCenter="0" horizontalCenter="0"/>
+	<mx:TextArea right="5" left="5" top="5" bottom="5">
+		<mx:text><![CDATA[In the public space of a foreign city, young Serbian artists – selected and supervised by Belgrade sculptor Mrdjan Bajić – formulate their questions and reflections on their own identity. Shaped not only by nation and religion, as simplified interpretations would often have us believe, their works and interventions in the city centre of Graz – from the Franciscan Church, across the river Mur, to the Church of the Brothers Hospitallers – are doubly context-related: They refer to the specific site and to the artists’ places of origin and call for a discussion in the public.
+Co-produced by steirischer herbst & Institut für Kunst im öffentlichen Raum Steiermark
+Carried out with funds from Kunst im öffentlichen Raum Steiermark]]></mx:text>
+	</mx:TextArea>
 	
 </mx:TitleWindow>
