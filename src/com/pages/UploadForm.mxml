@@ -12,7 +12,6 @@
 	<mx:Script>
         <![CDATA[
         	import mx.controls.Alert;
-        	import com.flashdev.file.FileUpload;
             import mx.managers.PopUpManager;
             
             [Bindable]

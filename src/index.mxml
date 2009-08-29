@@ -96,7 +96,7 @@
 				myVisualizer.radialLayout.overlappingAvoidMethod=LayoutConstants.DETERMINISTIC_OVERLAP_AVOID;
 				myVisualizer.radialLayout.edgeDrawing=LayoutConstants.ORTHOGONAL_CURVED_POLYLINE;
 				myVisualizer.radialLayout.rootSelectionPolicy=LayoutConstants.DIRECTED_ROOT_SELECTION;
-
+				
 
 
 			}
@@ -109,8 +109,7 @@
 			
      ]]>
 	</mx:Script>
-    <mx:XML id="vizdata" source="xmlData/Network.xml" >	
-    </mx:XML>
+    <mx:XML id="vizdata" source="xmlData/Network.xml" ></mx:XML>
 
 <mx:ViewStack id="viewStack" width="100%" height="100%" >
 		<mx:VBox    id="NetworkImage"
@@ -145,9 +144,9 @@
 		labelFields="{['@name']}"
 		name="{['@name']}"
 		tooltipFields="{['@num']}"
-		toolTipTitles="{['name']}"
+		toolTipTitles="{['@name']}"
 		layout="{LayoutConstants.BALLOON_LAYOUT}"
-		
+		creationComplete="onCreationComplete(); setVisualizerProperties()"
 	/>
 		    </mx:VBox>
 		    <mx:VBox id="Artistpage" 
@@ -178,24 +177,29 @@
 			<mx:GridRow width="100%" height="100%">
 				<mx:GridItem width="100%" height="100%">
 					 <mx:LinkButton id="a0" label="Network" icon="@Embed(source='/assets/target.png')"
-						 click="viewStack.selectedChild=NetworkImage;" 
+						 click="viewStack.selectedChild=NetworkImage,visibility.visible=true,linkDrawingTypeCombo.visible=true ;" 
 					     buttonMode="true"  themeColor="#5E08B6"> 
 					 </mx:LinkButton>
 					<mx:LinkButton id="b0" label="Network" icon="@Embed(source='/assets/target.png')"
-						 click="viewStack.selectedChild=Network;" 
-					     buttonMode="true"  themeColor="#5E08B6"> 
+						 click="viewStack.selectedChild=Network,visibility.visible=false,linkDrawingTypeCombo.visible=false ;" 
+					     buttonMode="true"  themeColor="#EF00DB"
+					    > 
 					 </mx:LinkButton>
-					<mx:LinkButton id="b1" label="Artists" icon="@Embed(source='/assets/artists.png')"
+					<mx:LinkButton id="b1" label="Artists" icon="@Embed(source='/assets/target.png')"
 						 click="viewStack.selectedChild=Artistpage;" 
-					     buttonMode="true"  themeColor="#5E08B6"> 
+					     buttonMode="true"  themeColor="#0663FE"> 
 					 </mx:LinkButton>
-					<mx:LinkButton click="PopUpManager.createPopUp(this,UploadForm,false);"
-						label="Upload Form" styleName="DarkLinkButton" color="#181818" 
-						icon="@Embed('assets/uploadfile.png')"  themeColor="#05679A" width="120">
-					               </mx:LinkButton>
 					<mx:LinkButton click="PopUpManager.createPopUp(this,AbOUT,false);"
 						label="AbOUT" styleName="DarkLinkButton" color="#181818" 
-						icon="@Embed('assets/people.png')"  themeColor="#05679A" width="95" fontWeight="bold">
+						icon="@Embed('assets/target.png')"  themeColor="#02F9E5" width="95" fontWeight="bold">
+					               </mx:LinkButton>
+					<mx:LinkButton click="PopUpManager.createPopUp(this,AbOUT,false);"
+						label="AbOUTweb" styleName="DarkLinkButton" color="#181818" 
+						icon="@Embed('assets/target.png')"  themeColor="#059A39" width="114" fontWeight="bold">
+					               </mx:LinkButton>
+					<mx:LinkButton click="PopUpManager.createPopUp(this,UploadForm,false);"
+						label="Upload Form" styleName="DarkLinkButton" color="#181818" 
+						icon="@Embed('assets/uploadfile.png')"  themeColor="#6E9A05" width="120">
 					               </mx:LinkButton>
 				</mx:GridItem>
 			</mx:GridRow>
@@ -219,7 +223,7 @@
 						icon="@Embed(source='/assets/iconZoomIn.png')"  
 						buttonMode="true" 
 					      width="28" themeColor="#BF0458"/>
-					<mx:HSlider id="visibility" minimum="0" maximum="3" snapInterval="1" tickInterval="1" value="1" showTrackHighlight="true" themeColor="#44A703" height="28"/>
+					<mx:HSlider id="visibility" minimum="0" maximum="3" snapInterval="1" tickInterval="1" value="1" showTrackHighlight="true" themeColor="#44A703" height="28" visible="true"/>
 					<mx:ComboBox id="linkDrawingTypeCombo" change="_onLinkDrawingTypeChange(event)" width="119" height="28"/>
 				</mx:GridItem>
 			</mx:GridRow>
@@ -239,36 +243,7 @@
 Koproduktion steirischer herbst & Institut für Kunst im öffentlichen Raum Steiermark
 Realisiert mit Mitteln von Kunst im öffentlichen Raum Steiermark]]></mx:text>
 			</mx:TextArea>
-			    <mx:Script>
-        <![CDATA[
-            private var timer:Timer;
 
-            private function init():void {
-                timer = new Timer(1000); /* 1000ms == 1second */
-                timer.addEventListener(TimerEvent.TIMER, onTimer);
-            }
-
-            private function onTimer(evt:TimerEvent):void {
-                var idx:uint = viewStack.selectedIndex;
-                var max:uint = viewStack.numChildren;
-
-                var newIdx:uint = ++idx % max;
-                viewStack.selectedIndex = newIdx;
-            }
-
-            private function startTimer():void {
-                if (!timer.running) {
-                    timer.start();
-                }
-            }
-
-            private function stopTimer():void {
-                if (timer.running) {
-                    timer.stop();
-                }
-            }
-        ]]>
-    </mx:Script>
 
 </mx:Application>
 
