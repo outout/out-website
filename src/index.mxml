@@ -160,16 +160,16 @@
 		            width="100%"
 		            height="100%">
 		            <mx:Tree id="list"
-            dataProvider="{vizdata}"
-            showRoot="false"
-            labelField="@name"
-            rowCount="6"
-            width="250"
-            height="100%" 
-            openItems="@name" 
-            folderOpenIcon="@Embed('assets/folderopen.png')"
-            folderClosedIcon="@Embed('assets/folderclose.png')"
-            itemIcons="@Embed('assets/folderopen.png')"/>
+           		     dataProvider="{vizdata}"
+          			 showRoot="false"
+       			     labelField="@name"
+       			     rowCount="6"
+       			     width="250"
+       			     height="100%" 
+        		     openItems="@name" 
+         		     folderOpenIcon="@Embed('assets/folderopen.png')"
+           			 folderClosedIcon="@Embed('assets/folderclose.png')"
+           			 itemIcons="@Embed('assets/folderopen.png')"/>
 
 		    </mx:VBox>
 		    <mx:VBox backgroundColor="haloSilver"
