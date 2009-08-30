@@ -30,7 +30,6 @@
 			import mx.managers.PopUpManager;
             import mx.containers.TitleWindow;
             import flash.geom.Point;
-      
       	    import mx.controls.ToolTip;
 			import mx.controls.Image;
 			import com.kapit.visualizer.LayoutConstants;
@@ -73,11 +72,7 @@
            // Alert.show("No Data");
 
            // }
-            public function closeWindowAll():void
-            {
-            	PopUpManager.removePopUp();
-            } 
-            
+
             
 			private function onCreationComplete():void
 			{
@@ -192,30 +187,30 @@
 		<mx:Grid >
 			<mx:GridRow width="100%" height="100%">
 				<mx:GridItem width="100%" height="100%">
-					 <mx:LinkButton id="a0" label="Network" icon="@Embed(source='/assets/target.png')"
+					 <mx:LinkButton id="a0" label="NetImage" icon="@Embed(source='/assets/target.png')"
 						 click="viewStack.selectedChild=NetworkImage,visibility.visible=true,linkDrawingTypeCombo.visible=true ;" 
-					     buttonMode="true"  themeColor="#5E08B6"> 
+					     buttonMode="true"  themeColor="#5E08B6" fontSize="11"> 
 					 </mx:LinkButton>
-					<mx:LinkButton id="b0" label="Network" icon="@Embed(source='/assets/target.png')"
+					<mx:LinkButton id="b0" label="NetName" icon="@Embed(source='/assets/target.png')"
 						 click="viewStack.selectedChild=Network,visibility.visible=false,linkDrawingTypeCombo.visible=false ;" 
 					     buttonMode="true"  themeColor="#EF00DB"
-					    > 
+					     fontSize="11"> 
 					 </mx:LinkButton>
 					<mx:LinkButton id="b1" label="Artists" icon="@Embed(source='/assets/target.png')"
 						 click="viewStack.selectedChild=Artistpage;" 
-					     buttonMode="true"  themeColor="#0663FE"> 
+					     buttonMode="true"  themeColor="#0663FE" fontSize="11"> 
 					 </mx:LinkButton>
 					<mx:LinkButton click="PopUpManager.createPopUp(this,AbOUT,false);"
 						label="AbOUT" styleName="DarkLinkButton" color="#181818" 
-						icon="@Embed('assets/target.png')"  themeColor="#02F9E5" width="95" fontWeight="bold">
+						icon="@Embed('assets/target.png')"  themeColor="#02F9E5" width="95" fontWeight="bold" fontSize="11">
 					               </mx:LinkButton>
 					<mx:LinkButton click="PopUpManager.createPopUp(this,AbOUTweb,false);"
 						label="AbOUTweb" styleName="DarkLinkButton" color="#181818" 
-						icon="@Embed('assets/target.png')"  themeColor="#059A39" width="114" fontWeight="bold">
+						icon="@Embed('assets/target.png')"  themeColor="#059A39" width="114" fontWeight="bold" fontSize="11">
 					               </mx:LinkButton>
 					<mx:LinkButton click="PopUpManager.createPopUp(this,UploadForm,false);"
-						label="Upload Form" styleName="DarkLinkButton" color="#181818" 
-						icon="@Embed('assets/uploadfile.png')"  themeColor="#6E9A05" width="120">
+						label="Upload File" styleName="DarkLinkButton" color="#181818" 
+						icon="@Embed('assets/uploadfile.png')"  themeColor="#6E9A05" width="120" fontSize="11">
 					               </mx:LinkButton>
 				</mx:GridItem>
 			</mx:GridRow>

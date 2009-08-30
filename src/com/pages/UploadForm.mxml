@@ -104,7 +104,6 @@
                         horizontalScrollPolicy="off" verticalScrollPolicy="off" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" backgroundColor="#FFFFFF">
                         
                         <mx:Panel id="uploadPanel" 
-                            title=" File Uploader" 
                             width="70%" height="100%"
                             borderStyle="solid" roundedBottomCorners="true"
                             shadowDistance="0" dropShadowEnabled="false">
@@ -126,11 +125,11 @@
                                 <mx:Button id="browseBtn" label="Browse"
                                     width="100%" cornerRadius="0" 
                                     tabEnabled="false" enabled="true"
-                                    click="browseForFile(event);"/>
+                                    click="browseForFile(event);" height="40" fillAlphas="[0.69, 1.0, 0.69, 0.69]" fillColors="[#717171, #535353]" fontSize="15" color="#F5F4F4" borderColor="#171717"/>
                                 <mx:Button id="uploadBtn" label="Upload"
                                     width="100%" cornerRadius="0" 
                                     tabEnabled="false" enabled="false"
-                                    click="uploadFileToServer(event);"/>
+                                    click="uploadFileToServer(event);" height="40" fontSize="15"/>
                             </mx:HBox>
                         
                         </mx:Panel>
