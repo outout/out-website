@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <node name="http://www.steirischerherbst.at" description="http://www.steirischerherbst.at" image="assets/network/sh_logo_300dpi.jpg" reference="http://www.steirischerherbst.at" IP="http://www.steirischerherbst.at">
 		<node name="Rados Antonijevic" num="5" image="assets/network/out_RAntonijevic_500.jpg" reference="" >
 		<node name="out" num="5a" image="assets/network/out.png" reference="" />
@@ -6,6 +7,34 @@
 		<node name="out" num="5c" image="assets/network/out.png" reference="" />
 		<node name="out" num="5d" image="assets/network/out.png" reference="" />
 		<node name="out" num="5e" image="assets/network/out.png" reference="" />
+	</node>
+	<node name="Ivana" num="4" image="assets/network/ivana.jpg" reference="" >
+		<node name="out" num="4a" image="assets/network/out.png" reference="" />
+		<node name="out" num="4b" image="assets/network/out.png" reference="" />
+		<node name="out" num="4c" image="assets/network/out.png" reference="" />
+		<node name="out" num="4d" image="assets/network/out.png" reference="" />
+		<node name="out" num="4e" image="assets/network/out.png" reference="" />
+	</node>
+	<node name="Museum" num="6" image="assets/network/museum.png" reference="" >
+		<node name="out" num="6a" image="assets/network/museum.png" reference="" />
+		<node name="out" num="6b" image="assets/network/museum.png" reference="" />
+		<node name="out" num="6c" image="assets/network/museum.png" reference="" />
+		<node name="out" num="6d" image="assets/network/museum.png" reference="" />
+		<node name="out" num="6e" image="assets/network/museum.png" reference="" />
+	</node>
+		<node name="OutFrends" num="6" image="assets/network/frends.png" reference="" >
+		<node name="OutFrends" num="6a" image="assets/network/frends.png" reference="" />
+		<node name="OutFrends" num="6b" image="assets/network/frends.png" reference="" />
+		<node name="OutFrends" num="6c" image="assets/network/frends.png" reference="" />
+		<node name="OutFrends" num="6d" image="assets/network/frends.png" reference="" />
+		<node name="OutFrends" num="6e" image="assets/network/frends.png" reference="" />
+	</node>
+	<node name="Milena" num="2" image="assets/network/milena.png" reference="" >
+		<node name="out" num="2a" image="assets/network/out.png" reference="" />
+		<node name="out" num="2b" image="assets/network/out.png" reference="" />
+		<node name="out" num="2c" image="assets/network/out.png" reference="" />
+		<node name="out" num="2d" image="assets/network/out.png" reference="" />
+		<node name="out" num="2e" image="assets/network/out.png" reference="" />
 	</node>
 	<node name="Olivera Parlic" num="3" image="assets/network/olja_parlic.jpg" reference="" >
 		<node name="out" num="3a" image="assets/network/out.png" reference="" />
@@ -21,27 +50,11 @@
 		<node name="out" num="1d" image="assets/network/out.png" reference="" />
 		<node name="out" num="1e" image="assets/network/out.png" reference="" />
 	</node>
-	<node name="Milena" num="2" image="assets/network/milena.png" reference="" >
-		<node name="out" num="2a" image="assets/network/out.png" reference="" />
-		<node name="out" num="2b" image="assets/network/out.png" reference="" />
-		<node name="out" num="2c" image="assets/network/out.png" reference="" />
-		<node name="out" num="2d" image="assets/network/out.png" reference="" />
-		<node name="out" num="2e" image="assets/network/out.png" reference="" />
-	</node>
-	<node name="Ivana" num="4" image="assets/network/ivana.jpg" reference="" >
-		<node name="out" num="4a" image="assets/network/out.png" reference="" />
-		<node name="out" num="4b" image="assets/network/out.png" reference="" />
-		<node name="out" num="4c" image="assets/network/out.png" reference="" />
-		<node name="out" num="4d" image="assets/network/out.png" reference="" />
-		<node name="out" num="4e" image="assets/network/out.png" reference="" />
-	</node>
-
-
 	<node name="Boris Sribar" num="6" image="assets/network/BorisSribar.jpg" reference="" >
 		<node name="out" num="6a" image="assets/network/out.png" reference="" />
 		<node name="out" num="6b" image="assets/network/out.png" reference="" />
 		<node name="out" num="6c" image="assets/network/out.png" reference="" />
 		<node name="out" num="6d" image="assets/network/out.png" reference="" />
 		<node name="out" num="6e" image="assets/network/out.png" reference="" />
-	</node>
+	</node>		
 </node>

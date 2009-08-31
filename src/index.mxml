@@ -73,7 +73,8 @@
 
            // }
 
-            
+        
+
 			private function onCreationComplete():void
 			{
 				var dpLink:Array = [	{label: "Straight", data: LayoutConstants.STRAIGHT_LINE},
@@ -93,6 +94,7 @@
 			
 			private function setDataprovider(event:Event):void
 			{
+				myVisualizer.dataProvider = new XML((event.currentTarget as URLLoader).data);
 				myVisualizer.dataProvider = new XML((event.currentTarget as URLLoader).data);
 			}
 			
@@ -116,7 +118,6 @@
 			
      ]]>
 	</mx:Script>
-    <mx:XML id="vizdata" source="xmlData/Network.xml" ></mx:XML>
 
 <mx:ViewStack id="viewStack" width="100%" height="100%" >
 		<mx:VBox    id="NetworkImage"
@@ -140,27 +141,17 @@
 		creationComplete="onCreationComplete(); setVisualizerProperties()"
 		>		
 	 </visualizer:Visualizer>
-		    </mx:VBox>
-	<mx:VBox id="Network" backgroundColor="#5F5F5F"
-		            width="100%"
-		            height="100%" backgroundAlpha="0.77">
-	<KapLab:Visualizer id="NameVisualizer"
-		x="0" y="0" width="100%" height="100%"
-		backgroundColor="0xFFFFFF" 
-		dataProvider="{vizdata}" 
-		labelFields="{['@name']}"
-		name="{['@name']}"
-		tooltipFields="{['@num']}"
-		toolTipTitles="{['@name']}"
-		layout="{LayoutConstants.BALLOON_LAYOUT}"
-		creationComplete="onCreationComplete(); setVisualizerProperties()"
-	/>
+	 		            <mx:TextArea backgroundAlpha="0.0" borderStyle="none" editable="false" color="#979797" selectable="false" width="100%" height="109">
+		            <mx:text><![CDATA[Im öffentlichen Raum einer fremden Stadt formulieren junge serbische Künstler – ausgewählt und betreut vom Belgrader Bildhauer Mrdjan Bajić – ihre Fragen und Überlegungen zur eigenen Identität. Eben nicht nur durch Nation und Religion geprägt, wie vereinfachte Lesarten oft glauben machen, sind ihre Arbeiten und Interventionen in der Grazer Innenstadt – von der Franziskanerkirche über die Mur hinweg bis zur Barmherzigenkirche – in doppeltem Sinn kontextbezogen: Sie beziehen sich ebenso auf ihren konkreten Standort, wie auf die Herkunftsorte der Künstler und fordern damit die Auseinandersetzung in aller Öffentlichkeit.
+Koproduktion steirischer herbst & Institut für Kunst im öffentlichen Raum Steiermark
+Realisiert mit Mitteln von Kunst im öffentlichen Raum Steiermark]]></mx:text>
+		            </mx:TextArea>
 		    </mx:VBox>
 		    <mx:VBox id="Artistpage" 
 		            width="100%"
 		            height="100%">
 		            <mx:Tree id="list"
-           		     dataProvider="{vizdata}"
+           		     dataProvider="{myVisualizer.dataProvider}"
           			 showRoot="false"
        			     labelField="@name"
        			     rowCount="6"
@@ -170,7 +161,6 @@
          		     folderOpenIcon="@Embed('assets/folderopen.png')"
            			 folderClosedIcon="@Embed('assets/folderclose.png')"
            			 itemIcons="@Embed('assets/folderopen.png')"/>
-
 		    </mx:VBox>
 		    <mx:VBox backgroundColor="haloSilver"
 		            width="100%"
@@ -191,18 +181,13 @@
 						 click="viewStack.selectedChild=NetworkImage,visibility.visible=true,linkDrawingTypeCombo.visible=true ;" 
 					     buttonMode="true"  themeColor="#5E08B6" fontSize="11"> 
 					 </mx:LinkButton>
-					<mx:LinkButton id="b0" label="NetName" icon="@Embed(source='/assets/target.png')"
-						 click="viewStack.selectedChild=Network,visibility.visible=false,linkDrawingTypeCombo.visible=false ;" 
-					     buttonMode="true"  themeColor="#EF00DB"
-					     fontSize="11"> 
-					 </mx:LinkButton>
 					<mx:LinkButton id="b1" label="Artists" icon="@Embed(source='/assets/target.png')"
 						 click="viewStack.selectedChild=Artistpage;" 
 					     buttonMode="true"  themeColor="#0663FE" fontSize="11"> 
 					 </mx:LinkButton>
 					<mx:LinkButton click="PopUpManager.createPopUp(this,AbOUT,false);"
 						label="AbOUT" styleName="DarkLinkButton" color="#181818" 
-						icon="@Embed('assets/target.png')"  themeColor="#02F9E5" width="95" fontWeight="bold" fontSize="11">
+						icon="@Embed('assets/target.png')"  themeColor="#461AEA" width="95" fontWeight="bold" fontSize="11">
 					               </mx:LinkButton>
 					<mx:LinkButton click="PopUpManager.createPopUp(this,AbOUTweb,false);"
 						label="AbOUTweb" styleName="DarkLinkButton" color="#181818" 
@@ -210,7 +195,7 @@
 					               </mx:LinkButton>
 					<mx:LinkButton click="PopUpManager.createPopUp(this,UploadForm,false);"
 						label="Upload File" styleName="DarkLinkButton" color="#181818" 
-						icon="@Embed('assets/uploadfile.png')"  themeColor="#6E9A05" width="120" fontSize="11">
+						icon="@Embed('assets/uploadfile.png')"  themeColor="#06F4E0" width="120" fontSize="11">
 					               </mx:LinkButton>
 				</mx:GridItem>
 			</mx:GridRow>
@@ -221,16 +206,16 @@
 				<mx:GridItem width="100%" height="100%">
 				
 				<mx:LinkButton toolTip="Fit to content" id="autoFit" 
-						click="myVisualizer.autoFit(),NameVisualizer.autoFit()" 
+						click="myVisualizer.autoFit()" 
 						icon="@Embed(source='/assets/iconFit.png')" 
 						  width="30" themeColor="#9C04B7"/>
 					<mx:LinkButton toolTip="Zoom Out" id="zoomOut" 
-						click="myVisualizer.zoomContent(0.9),NameVisualizer.zoomContent(0.9)" 
+						click="myVisualizer.zoomContent(0.9)" 
 						icon="@Embed(source='/assets/iconZoomOut.png')" 
 					  buttonMode="true"  
 						 width="29" themeColor="#BB0367"/>
 					<mx:LinkButton toolTip="Zoom in" id="zoomIn" 
-						click="myVisualizer.zoomContent(1.1),NameVisualizer.zoomContent(1.1)" 
+						click="myVisualizer.zoomContent(1.1)" 
 						icon="@Embed(source='/assets/iconZoomIn.png')"  
 						buttonMode="true" 
 					      width="28" themeColor="#BF0458"/>
@@ -249,11 +234,6 @@
 		</mx:HBox>
 		<mx:Spacer  width="100%"/>
 	</mx:VBox>
-			<mx:TextArea height="109" backgroundAlpha="0.0" borderStyle="none" editable="false" color="#979797" selectable="false" bottom="5" right="5" left="5">
-			<mx:text><![CDATA[Im öffentlichen Raum einer fremden Stadt formulieren junge serbische Künstler – ausgewählt und betreut vom Belgrader Bildhauer Mrdjan Bajić – ihre Fragen und Überlegungen zur eigenen Identität. Eben nicht nur durch Nation und Religion geprägt, wie vereinfachte Lesarten oft glauben machen, sind ihre Arbeiten und Interventionen in der Grazer Innenstadt – von der Franziskanerkirche über die Mur hinweg bis zur Barmherzigenkirche – in doppeltem Sinn kontextbezogen: Sie beziehen sich ebenso auf ihren konkreten Standort, wie auf die Herkunftsorte der Künstler und fordern damit die Auseinandersetzung in aller Öffentlichkeit.
-Koproduktion steirischer herbst & Institut für Kunst im öffentlichen Raum Steiermark
-Realisiert mit Mitteln von Kunst im öffentlichen Raum Steiermark]]></mx:text>
-			</mx:TextArea>
 
 
 </mx:Application>
