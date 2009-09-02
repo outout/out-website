@@ -1,61 +1,60 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <node name="http://www.steirischerherbst.at" description="http://www.steirischerherbst.at" image="assets/network/sh_logo_300dpi.jpg" reference="http://www.steirischerherbst.at" IP="http://www.steirischerherbst.at">
-		<node name="Rados Antonijevic" num="5" image="assets/network/out_RAntonijevic_500.jpg" LargeImage="assets/LargeImage/dw_appicon.jpg" >
-		<node name="out" num="5a" image="assets/network/out.png" LargeImage="assets/LargeImage/dw_appicon.jpg" />
-		<node name="out" num="5b" image="assets/network/out.png" LargeImage="assets/LargeImage/dw_appicon.jpg" />
-		<node name="out" num="5c" image="assets/network/out.png" LargeImage="assets/LargeImage/dw_appicon.jpg" />
-		<node name="out" num="5d" image="assets/network/out.png" LargeImage="assets/LargeImage/dw_appicon.jpg"/>
-		<node name="out" num="5e" image="assets/network/out.png" LargeImage="assets/LargeImage/dw_appicon.jpg"/>
+		<node name="Rados Antonijevic"  image="assets/network/out_RAntonijevic_500.jpg" LargeImage="upload/rados.antonijevic.jpg" >
+		<node name="out"  image="assets/network/out.png" LargeImage="upload/rados.antonijevic.jpg" />
+		<node name="out"  image="assets/network/out.png" LargeImage="upload/rados.antonijevic.jpg" />
+		<node name="out"  image="assets/network/out.png" LargeImage="upload/rados.antonijevic.jpg" />
+		<node name="out"  image="assets/network/out.png" LargeImage="upload/rados.antonijevic.jpg"/>
+		<node name="out"  image="assets/network/out.png" LargeImage="upload/rados.antonijevic.jpg"/>
 	</node>
-	<node name="Ivana" num="4" image="assets/network/ivana.jpg" LargeImage="assets/LargeImage/dw_appicon.jpg" >
-		<node name="out" num="4a" image="assets/network/out.png" reference="" />
-		<node name="out" num="4b" image="assets/network/out.png" reference="" />
-		<node name="out" num="4c" image="assets/network/out.png" reference="" />
-		<node name="out" num="4d" image="assets/network/out.png" reference="" />
-		<node name="out" num="4e" image="assets/network/out.png" reference="" />
+	<node name="Ivana Milev" num="4" image="assets/network/ivana.jpg" LargeImage="upload/ivana.milev.jpg" >
+		<node name="out" image="assets/network/out.png" LargeImage="upload/ivana.milev.jpg" />
+		<node name="out" image="assets/network/out.png" LargeImage="upload/ivana.milev.jpg" />
+		<node name="out" image="assets/network/out.png" LargeImage="upload/ivana.milev.jpg" />
+		<node name="out" image="assets/network/out.png" LargeImage="upload/ivana.milev.jpg" />
+		<node name="out" image="assets/network/out.png" LargeImage="upload/ivana.milev.jpg" />
 	</node>
-	<node name="Museum" num="6" image="assets/network/museum.png" LargeImage="assets/LargeImage/fl_player_appicon.jpg" >
-		<node name="out" num="6a" image="assets/network/museum.png" reference="" />
-		<node name="out" num="6b" image="assets/network/museum.png" reference="" />
-		<node name="out" num="6c" image="assets/network/museum.png" reference="" />
-		<node name="out" num="6d" image="assets/network/museum.png" reference="" />
-		<node name="out" num="6e" image="assets/network/museum.png" reference="" />
+	<node name="Museum"  image="assets/network/museum.png" LargeImage="upload/muzeum.jpg" >
+		<node name="out" image="assets/network/museum.png" LargeImage="upload/muzeum.jpg" />
+		<node name="out" image="assets/network/museum.png" LargeImage="upload/muzeum.jpg" />
+		<node name="out" image="assets/network/museum.png" LargeImage="upload/muzeum.jpg" />
+		<node name="out" image="assets/network/museum.png" LargeImage="upload/muzeum.jpg" />
+		<node name="out" image="assets/network/museum.png" LargeImage="upload/muzeum.jpg" />
 	</node>
-		<node name="OutFrends" num="6" image="assets/network/frends.png" LargeImage="assets/LargeImage/fl_player_appicon.jpg">
-		<node name="OutFrends" num="6a" image="assets/network/frends.png" reference="" />
-		<node name="OutFrends" num="6b" image="assets/network/frends.png" reference="" />
-		<node name="OutFrends" num="6c" image="assets/network/frends.png" reference="" />
-		<node name="OutFrends" num="6d" image="assets/network/frends.png" reference="" />
-		<node name="OutFrends" num="6e" image="assets/network/frends.png" reference="" />
+		<node name="OutFrends" image="assets/network/frends.png" LargeImage="upload/rados.antonijevic.jpg">
+		<node name="OutFrends" image="assets/network/frends.png" LargeImage="upload/dragan.djordjevic.jpg" />
+		<node name="OutFrends" image="assets/network/frends.png" LargeImage="upload/dragan.djordjevic.jpg"/>
+		<node name="OutFrends" image="assets/network/frends.png" LargeImage="upload/dragan.djordjevic.jpg"/>
+		<node name="OutFrends" image="assets/network/frends.png" LargeImage="upload/dragan.djordjevic.jpg"/>
+		<node name="OutFrends" image="assets/network/frends.png" LargeImage="upload/dragan.djordjevic.jpg"/>
 	</node>
-	<node name="Milena" num="2" image="assets/network/milena.png" LargeImage="assets/LargeImage/fl_appicon.jpg" >
-		<node name="out" num="2a" image="assets/network/out.png" reference="" />
-		<node name="out" num="2b" image="assets/network/out.png" reference="" />
-		<node name="out" num="2c" image="assets/network/out.png" reference="" />
-		<node name="out" num="2d" image="assets/network/out.png" reference="" />
-		<node name="out" num="2e" image="assets/network/out.png" reference="" />
+	<node name="Milena Bakmaz"  			  image="assets/network/milena.png" LargeImage="upload/milena.bakmaz.jpg" >
+ 		<node name="Sanja Latinovic"  image="assets/network/ime.prezime_01.jpg"  />
+		<node name="Jagoda Micovic"   image="assets/network/ime.prezime_01.jpg"  />
+		<node name="Nemanja Nikolic"  image="assets/network/ime.prezime_01.jpg"  />
+		<node name="Bojana Petkovic"  image="assets/network/ime.prezime_01.jpg"  />
 	</node>
-	<node name="Olivera Parlic" num="3" image="assets/network/olja_parlic.jpg" LargeImage="assets/LargeImage/dw_appicon.jpg" >
-		<node name="Anica Vučetić" num="3a" image="assets/network/out.png" reference="" />
-		<node name="Brankica Končarević" num="3b" image="assets/network/out.png" reference="" />
-		<node name="Nikola Pešić" num="3c" image="assets/network/out.png" reference="" />
-		<node name="Ana Petrović" num="3d" image="assets/network/out.png" reference="" />
-		<node name="Marko Marković" num="3e" image="assets/network/out.png" reference="" />	
+	<node name="Olivera Parlic"          image="assets/network/olja_parlic.jpg" LargeImage="upload/olivera.parlic.jpg" >
+		<node name="Anica Vucetic"       image="assets/network/out.png" LargeImage="upload/anica.vucetic.jpg" />
+		<node name="Brankica Koncarevic" image="assets/network/out.png" LargeImage="upload/brankica.koncarevic.jpg" />
+		<node name="Nikola Pesic"  		 image="assets/network/out.png" LargeImage="upload/nikola.pesic.jpg"/>
+		<node name="Ana Petrovic"   	 image="assets/network/out.png" LargeImage="upload/ana.petrovic.jpg" />
+		<node name="Marko Markovic"		 image="assets/network/out.png" LargeImage="upload/marko.markovic.jpg" />	
 	</node>
-	<node name="Dragan Djordjevic" num="1" image="assets/network/zmaj.jpg"  LargeImage="assets/LargeImage/cf_appicon.jpg" >
-		<node name="Tijana Knezevic" num="1a" image="assets/network/out.png" reference="" />
-		<node name="Marija Skoko" num="1b" image="assets/network/out.png" reference="" />
-		<node name="Nikola Markovic" num="1c" image="assets/network/out.png" reference="" />
-		<node name="Aleksandar Jestrovic" num="1d" image="assets/network/out.png" reference="" />
-		<node name="Nenad Kostic" num="1e" image="assets/network/out.png" reference="" />
-		<node name="Virvel" num="1e" image="assets/network/out.png" reference="" />
+	<node name="Dragan Djordjevic"    image="assets/network/zmaj.jpg"  LargeImage="upload/dragan.djordjevic.jpg" >
+		<node name="Tijana Knezevic"  image="assets/network/out.png" LargeImage="upload/tijana.knezevic.jpg"/>
+		<node name="Marija Skoko"     image="assets/network/out.png" LargeImage="upload/marija.skoko.jpg" />
+		<node name="Nikola Markovic"  image="assets/network/out.png" LargeImage="upload/nikola.markovic.jpg" />
+		<node name="Aleksandar Jestrovic" image="assets/network/out.png" LargeImage="upload/aleksandar.jestrovic.jpg" />
+		<node name="Nenad Kostic"     image="assets/network/out.png" LargeImage="upload/nenad.kostic.jpg" />
+		<node name="Virvel"           image="assets/network/out.png" LargeImage="upload/virvel.jpg" />
 	</node>
-	<node name="Boris Sribar" num="6" image="assets/network/BorisSribar.jpg" LargeImage="assets/LargeImage/ai_appicon.jpg" >
-		<node name="out" num="6a" image="assets/network/out.png" reference="" />
-		<node name="out" num="6b" image="assets/network/out.png" reference="" />
-		<node name="out" num="6c" image="assets/network/out.png" reference="" />
-		<node name="out" num="6d" image="assets/network/out.png" reference="" />
-		<node name="out" num="6e" image="assets/network/out.png" reference="" />
+	<node name="Boris Sribar" image="assets/network/BorisSribar.jpg" LargeImage="upload/boris.sribar.jpg" >
+		<node name="Jelena Radic " image="assets/network/jelena.radic.jpg"  />
+		<node name="Maja Rakocevic"  image="assets/network/maja.rakocevic.jpg"  />
+		<node name="Ivana Smiljanic"  image="assets/network/ivana.smiljanic.jpg" />
+		<node name="Milica Ruzicic"  image="assets/network/milica.ruzicic.jpg" />
+		<node name="Danilo Prnjat" image="assets/network/danilo.prnjat.jpg" /> 
 	</node>		
 </node>
