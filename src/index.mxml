@@ -75,16 +75,26 @@
            // }
 
            //tree fotoalbum
-			private function tree_itemClick(evt:ListEvent):void {
+		import mx.events.ListEvent;
+		private function tree_itemClick(evt:ListEvent):void {
 				var t:Tree = evt.currentTarget as Tree;
 				var dataObj:Object = evt.itemRenderer.data;
+				
 				if (dataObj.hasOwnProperty("@LargeImage")) {
+					
+					var url:String = dataObj.@texturl.toString();
+					var loadit:URLLoader = new URLLoader();
+					loadit.addEventListener(Event.COMPLETE,completeHandler);
+                    loadit.load(new URLRequest(url));
 					swfLoader.source = dataObj.@LargeImage;
 				} else if (t.dataDescriptor.isBranch(t.selectedItem)) {
 					swfLoader.source = null;
 					panel.status = "";
 				}
 			}
+			private function completeHandler(event:Event):void {
+			autortext.text = event.currentTarget.data as String;
+				}
 
 			private function tree_labelFunc(item:Object):String {
 				var suffix:String = "";
@@ -97,6 +107,8 @@
 			private function swfLoader_complete(evt:Event):void {
 				panel.status = (swfLoader.bytesTotal/1024).toFixed(2) + 'KB';
 			}
+           //---------------------------------------
+
 
            //tree fotoalbum
 
@@ -119,7 +131,6 @@
 			
 			private function setDataprovider(event:Event):void
 			{
-				myVisualizer.dataProvider = new XML((event.currentTarget as URLLoader).data);
 				myVisualizer.dataProvider = new XML((event.currentTarget as URLLoader).data);
 			}
 			
@@ -192,11 +203,14 @@ Realisiert mit Mitteln von Kunst im öffentlichen Raum Steiermark]]></mx:text>
 				width="100%"
 				height="100%"
 				backgroundColor="white" horizontalAlign="center" verticalAlign="middle">
-			<mx:SWFLoader id="swfLoader"
-					scaleContent="true"
-					width="550" 
-					height="550" 
-					complete="swfLoader_complete(event);" />
+			<mx:VDividedBox height="100%" width="100%" verticalAlign="middle" horizontalAlign="center" paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="10">
+				<mx:SWFLoader id="swfLoader"
+						scaleContent="true"
+						width="550" 
+						height="550" 
+						complete="swfLoader_complete(event);" />
+				<mx:Text   text="Text" width="100%" height="150" id="autortext"/>
+			</mx:VDividedBox>
 			<mx:ControlBar>
 				<mx:LinkButton label="{swfLoader.source.toString()}" />
 			</mx:ControlBar>
