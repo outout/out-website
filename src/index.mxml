@@ -43,14 +43,29 @@
             import mx.events.ListEvent;
             import mx.preloaders.Preloader
             [Bindable]
+            
             [Embed(source="assets/folderopen.png")]
             public var folderopen:Class;
-
+            
             [Bindable]
             [Embed(source="assets/folderclose.png")]
             public var folderclose:Class;
       
-      
+      		 [Bindable]
+     	     [Embed(source="./assets/artist.png")] 
+              public var artist:Class; 
+ 
+            [Bindable]
+            [Embed(source="./assets/guestartist.png")] 
+             public var guestartist:Class; 
+ 
+             [Bindable]
+             [Embed(source="./assets/organisation.png")] 
+             public var organisation:Class; 
+
+             [Bindable]
+             [Embed(source="./assets/outguest.png")] 
+              public var outguest:Class; 
       
       
 
@@ -76,13 +91,24 @@
            // Alert.show("No Data");
 
            // }
+            import mx.collections.ICollectionView;
+            import mx.events.ListEvent;
+
+
+
+
 
            //tree fotoalbum
 		import mx.events.ListEvent;
 		private function tree_itemClick(evt:ListEvent):void {
+			//---------
+			 var item:Object = Tree(evt.currentTarget).selectedItem;
+                if (tree.dataDescriptor.isBranch(item)) {
+                    tree.expandItem(item, !tree.isItemOpen(item), true);
+                }
 				var t:Tree = evt.currentTarget as Tree;
 				var dataObj:Object = evt.itemRenderer.data;
-				
+			//---------	
 				if (dataObj.hasOwnProperty("@LargeImage")) {
 					
 					var url:String = dataObj.@texturl.toString();
@@ -106,6 +132,13 @@
 					suffix = " (" + item.children().length() + ")";
 				}
 				return item.@name + suffix;
+				//---
+				var children:ICollectionView;
+                if (tree.dataDescriptor.isBranch(item)) {
+                    children = tree.dataDescriptor.getChildren(item);
+                    suffix = " (" + children.length + ")";
+                }
+                return item[tree.labelField] + suffix;
 			}
 
 
@@ -202,7 +235,7 @@ Realisiert mit Mitteln von Kunst im öffentlichen Raum Steiermark]]></mx:text>
 					itemClick="tree_itemClick(event);" 
 					folderOpenIcon="@Embed('assets/folderopen.png')"
            			folderClosedIcon="@Embed('assets/folderclose.png')"
-           			itemIcons="@Embed('assets/folderopen.png')"/>
+           			iconField="@color"/>
 		</mx:Panel>
 		<mx:Panel id="panel"
 				width="100%"
