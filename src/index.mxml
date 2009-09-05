@@ -9,7 +9,8 @@
 	creationComplete="init();"
 	backgroundGradientAlphas="[1.0, 1.0]" 
 	backgroundGradientColors="[#F0F0F0, #ECECEC]"
-	backgroundImage="assets/INDEXbgd.swf">
+	backgroundImage="assets/INDEXbgd.swf"
+	xmlns:controls="com.controls.*">
 
 	<!--
 		This application demonstrates how to use Visualizer component to display Hierarchical data in a Radial layout
@@ -17,6 +18,7 @@
 
 	<mx:Script>
 		<![CDATA[
+			import mx.automation.delegates.controls.ProgressBarAutomationImpl;
 			import mx.controls.Alert;
 			import com.kapit.visualizer.events.VisualizerEvent;
 		    import com.pages.AbOUT;
@@ -39,6 +41,7 @@
             import mx.events.CloseEvent;
             import flash.events.Event
             import mx.events.ListEvent;
+            import mx.preloaders.Preloader
             [Bindable]
             [Embed(source="assets/folderopen.png")]
             public var folderopen:Class;
@@ -86,9 +89,10 @@
 					var loadit:URLLoader = new URLLoader();
 					loadit.addEventListener(Event.COMPLETE,completeHandler);
                     loadit.load(new URLRequest(url));
-					swfLoader.source = dataObj.@LargeImage;
+					Image1.source = dataObj.@LargeImage;
+					ImageLinkBar.selectedIndex=0;
 				} else if (t.dataDescriptor.isBranch(t.selectedItem)) {
-					swfLoader.source = null;
+					Image1.source = null;
 					panel.status = "";
 				}
 			}
@@ -104,8 +108,9 @@
 				return item.@name + suffix;
 			}
 
-			private function swfLoader_complete(evt:Event):void {
-				panel.status = (swfLoader.bytesTotal/1024).toFixed(2) + 'KB';
+
+			private function Image1_complete(evt:Event):void {
+				panel.status = (Image1.bytesTotal/1024).toFixed(2) + 'KB';
 			}
            //---------------------------------------
 
@@ -121,7 +126,7 @@
 						{label: "Orth. curved", data: LayoutConstants.ORTHOGONAL_CURVED_POLYLINE}
 					];
 				linkDrawingTypeCombo.dataProvider = dpLink;
-				linkDrawingTypeCombo.selectedIndex = 4;
+				linkDrawingTypeCombo.selectedIndex = 6;
 				
 				var urlRequest:URLRequest = new URLRequest("xmlData/Network.xml");
 				var urlLoader:URLLoader = new URLLoader();
@@ -173,7 +178,7 @@
 		visibilityLevel="{visibility.value}"
 		expandOnDoubleClick="true"
 		multimediaClass="{Image}"
-		multimediaDataSource="{'@image'}"
+		multimediaDataSource="{'@thumbnail'}"
 		creationComplete="onCreationComplete(); setVisualizerProperties()"
 		>		
 	 </visualizer:Visualizer>
@@ -204,15 +209,47 @@ Realisiert mit Mitteln von Kunst im öffentlichen Raum Steiermark]]></mx:text>
 				height="100%"
 				backgroundColor="white" horizontalAlign="center" verticalAlign="middle">
 			<mx:VDividedBox height="100%" width="100%" verticalAlign="middle" horizontalAlign="center" paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="10">
-				<mx:SWFLoader id="swfLoader"
-						scaleContent="true"
-						width="550" 
-						height="550" 
-						complete="swfLoader_complete(event);" />
+			
+			<mx:Grid>
+				<mx:GridRow paddingTop="30" horizontalAlign="center">
+					<mx:GridItem>
+					<mx:ViewStack id="ImageViewStack">	
+					<mx:VBox    id="ImageStack1" label="Image1">			
+                    <controls:LoadingImage id="Image1" width="550" height="550" source="em "
+					progressPercentWidth="80" progressHeight="20" />
+					</mx:VBox>
+					<mx:VBox    id="ImageStack2" label="Image2">	
+					 <controls:LoadingImage id="Image2" width="550" height="550"
+					progressPercentWidth="80" progressHeight="20" />
+					</mx:VBox>
+					<mx:VBox    id="ImageStack3" label="Image3">	
+					 <controls:LoadingImage id="Image3" width="550" height="550"
+					progressPercentWidth="80" progressHeight="20" />
+					</mx:VBox>
+
+					<mx:VBox    id="ImageStack4" label="Image4">	
+					 <controls:LoadingImage id="Image4" width="550" height="550"
+					progressPercentWidth="80" progressHeight="20" />
+					</mx:VBox>
+					<mx:VBox    id="ImageStack5" label="Image5">	
+					 <controls:LoadingImage id="Image5" width="550" height="550"
+					progressPercentWidth="80" progressHeight="20" />
+					</mx:VBox>
+					</mx:ViewStack>
+					</mx:GridItem>
+				</mx:GridRow>
+				<mx:GridRow>
+					<mx:GridItem>
+					<mx:LinkBar id="ImageLinkBar" color="0x0050AA" horizontalAlign="center" width="550" fontWeight="bold" dataProvider="{ImageViewStack}"  selectedIndex="0" visible="false"/>
+					</mx:GridItem>
+				</mx:GridRow>
+			</mx:Grid>
+
+						
+
 				<mx:Text   text="Text" width="100%" height="150" id="autortext"/>
 			</mx:VDividedBox>
 			<mx:ControlBar>
-				<mx:LinkButton label="{swfLoader.source.toString()}" />
 			</mx:ControlBar>
 		</mx:Panel>
 	</mx:HDividedBox>

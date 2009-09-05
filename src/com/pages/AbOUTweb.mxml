@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300" creationComplete="centerWindow()" title="AbOUTweb" showCloseButton="true" close="closeWindow()">
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="628" height="454" creationComplete="centerWindow()" title="AbOUTweb" showCloseButton="true" close="closeWindow()">
 	
 	<mx:Script>
         <![CDATA[
@@ -18,7 +18,47 @@
        ]]>
        
 	</mx:Script>
-	
-	<mx:Label text="http://github.com/outout/out-website/tree/master" verticalCenter="0" horizontalCenter="0"/>
+	<mx:Grid right="10" left="10" bottom="10" top="10">
+		<mx:GridRow width="100%" height="100%">
+			<mx:GridItem width="126" height="100%" horizontalAlign="center" verticalAlign="middle">
+				<mx:Image source="thumbnails/dejan.dimic.jpg" width="115.5" height="143"/>
+			</mx:GridItem>
+			<mx:GridItem width="100%" height="100%">
+				<mx:TextArea width="100%" height="100%" borderStyle="none">
+					<mx:text><![CDATA[Dejan Dimic
+Current
+- Head of software development at Global Substation Solutions
+
+Past
+- Head of development at Europoint d.o.o.
+- Part time Ruby on Rails Software developer at Vast.com
+- Software developer – team leader at Teletrader Software AG
+http://www.linkedin.com/in/dejandimic]]></mx:text>
+				</mx:TextArea>
+			</mx:GridItem>
+		</mx:GridRow>
+		<mx:GridRow width="100%" height="100%">
+			<mx:GridItem width="128" height="100%" horizontalAlign="center">
+				<mx:Image source="thumbnails/dragan.djordjevic.jpg" width="115" height="143.75"/>
+			</mx:GridItem>
+			<mx:GridItem width="100%" height="100%">
+				<mx:TextArea width="100%" height="100%" text="Dragan Djordjevic&#xa;Current&#xa;- Flex Front End Designer  at Global Substation Solutions&#xa;- Sculptor&#xa;Past&#xa;2006   Finished postgraduate studies at the Faculty of Fine Arts in Belgrade, Sculpture Department, &#xa;1998  Graduated Mechanical Engineering in Belgrade&#xa;www.dragandjordjevic.com&#xa;" borderStyle="none"/>
+			</mx:GridItem>
+		</mx:GridRow>
+		<mx:GridRow width="100%" height="100%">
+			<mx:GridItem width="123" height="100%" horizontalAlign="center" verticalAlign="middle">
+				<mx:Image source="thumbnails/out.png" width="107.06896" height="81"/>
+			</mx:GridItem>
+			<mx:GridItem width="100%" height="100%">
+				<mx:TextArea width="100%" height="100%" borderStyle="none">
+					<mx:text><![CDATA[open source web project developed by Dejan Dimic on server side an Dragan Djordjevic on front end
+tehnology:
+ruby, flex 
+free download source :
+http://github.com/outout/out-website/tree/master]]></mx:text>
+				</mx:TextArea>
+			</mx:GridItem>
+		</mx:GridRow>
+	</mx:Grid>
 	
 </mx:TitleWindow>
