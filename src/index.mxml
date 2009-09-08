@@ -10,6 +10,7 @@
 	backgroundGradientAlphas="[1.0, 1.0]" 
 	backgroundGradientColors="[#F0F0F0, #ECECEC]"
 	backgroundImage="assets/INDEXbgd.swf"
+	xmlns:controlsflv="com.fxcomponents.controls.*"
 	xmlns:controls="com.controls.*">
 
 	<!--
@@ -66,7 +67,9 @@
              [Bindable]
              [Embed(source="./assets/outguest.png")] 
               public var outguest:Class; 
-      
+      		
+      		 [Bindable]
+			 private var source:String = "video/out.flv";
       
 
   		    [Bindable]
@@ -79,8 +82,8 @@
 			    caps:"none",
 			    joints:null,
 			    miterLimit:3,
-			    onLength:5,
-			    offLength:5
+			    onLength:4,
+			    offLength:4
 			};
            // public function openWindow(event:Event):void
            // {
@@ -148,7 +151,7 @@
            //---------------------------------------
 
 
-           //tree fotoalbum
+           //---end tree fotoalbum
 
 			private function onCreationComplete():void
 			{
@@ -159,7 +162,7 @@
 						{label: "Orth. curved", data: LayoutConstants.ORTHOGONAL_CURVED_POLYLINE}
 					];
 				linkDrawingTypeCombo.dataProvider = dpLink;
-				linkDrawingTypeCombo.selectedIndex = 6;
+				linkDrawingTypeCombo.selectedIndex = 4;
 				
 				var urlRequest:URLRequest = new URLRequest("xmlData/Network.xml");
 				var urlLoader:URLLoader = new URLLoader();
@@ -215,11 +218,6 @@
 		creationComplete="onCreationComplete(); setVisualizerProperties()"
 		>		
 	 </visualizer:Visualizer>
-	 		            <mx:TextArea backgroundAlpha="0.0" borderStyle="none" editable="false" color="#979797" selectable="false" width="100%" height="109">
-		            <mx:text><![CDATA[Im öffentlichen Raum einer fremden Stadt formulieren junge serbische Künstler – ausgewählt und betreut vom Belgrader Bildhauer Mrdjan Bajić – ihre Fragen und Überlegungen zur eigenen Identität. Eben nicht nur durch Nation und Religion geprägt, wie vereinfachte Lesarten oft glauben machen, sind ihre Arbeiten und Interventionen in der Grazer Innenstadt – von der Franziskanerkirche über die Mur hinweg bis zur Barmherzigenkirche – in doppeltem Sinn kontextbezogen: Sie beziehen sich ebenso auf ihren konkreten Standort, wie auf die Herkunftsorte der Künstler und fordern damit die Auseinandersetzung in aller Öffentlichkeit.
-Koproduktion steirischer herbst & Institut für Kunst im öffentlichen Raum Steiermark
-Realisiert mit Mitteln von Kunst im öffentlichen Raum Steiermark]]></mx:text>
-		            </mx:TextArea>
 		    </mx:VBox>
 		    <mx:VBox id="Artistpage" 
 		            width="100%"
@@ -235,7 +233,7 @@ Realisiert mit Mitteln von Kunst im öffentlichen Raum Steiermark]]></mx:text>
 					itemClick="tree_itemClick(event);" 
 					folderOpenIcon="@Embed('assets/folderopen.png')"
            			folderClosedIcon="@Embed('assets/folderclose.png')"
-           			iconField="@color"/>
+           			iconField="@color" useHandCursor="true"/>
 		</mx:Panel>
 		<mx:Panel id="panel"
 				width="100%"
@@ -284,16 +282,17 @@ Realisiert mit Mitteln von Kunst im öffentlichen Raum Steiermark]]></mx:text>
 			</mx:VDividedBox>
 			<mx:ControlBar>
 			</mx:ControlBar>
-		</mx:Panel>
+		</mx:Panel>		
+
 	</mx:HDividedBox>
 		            
 		            
 		           
 		    </mx:VBox>
-		    <mx:VBox backgroundColor="haloSilver"
+		    <mx:VBox id="helpSilver"
 		            width="100%"
-		            height="100%" verticalGap="0">
-		        <mx:Label text="VBox 4" />
+		            height="100%" verticalGap="0" horizontalAlign="center" verticalAlign="top">
+		        <controlsflv:FXVideo  width="100%" height="95%" source="{source}" autoPlay="false" bufferTime="10"  backgroundColor="#5F5F5F" borderStyle="solid" borderThickness="6" borderColor="#B90488"/> 
 		    </mx:VBox>
 		</mx:ViewStack>
 
@@ -323,6 +322,10 @@ Realisiert mit Mitteln von Kunst im öffentlichen Raum Steiermark]]></mx:text>
 					               </mx:LinkButton>
 					<mx:LinkButton click="PopUpManager.createPopUp(this,UploadForm,false);"
 						label="Upload File" styleName="DarkLinkButton" color="#181818" 
+						icon="@Embed('assets/uploadfile.png')"  themeColor="#06F4E0" width="120" fontSize="11">
+					               </mx:LinkButton>
+					<mx:LinkButton click="viewStack.selectedChild=helpSilver;"
+						label="HELP" styleName="DarkLinkButton" color="#181818" 
 						icon="@Embed('assets/uploadfile.png')"  themeColor="#06F4E0" width="120" fontSize="11">
 					               </mx:LinkButton>
 				</mx:GridItem>

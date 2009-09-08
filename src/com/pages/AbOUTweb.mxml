@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="628" height="454" creationComplete="centerWindow()" title="AbOUTweb" showCloseButton="true" close="closeWindow()">
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="628" height="488" creationComplete="centerWindow()" title="AbOUTweb" showCloseButton="true" close="closeWindow()">
 	
 	<mx:Script>
         <![CDATA[

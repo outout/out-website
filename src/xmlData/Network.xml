@@ -16,12 +16,12 @@
 		<node name="out" color="guestartist"  thumbnail="thumbnails/out.png" LargeImage="upload/ivana.milev.jpg" texturl="upload/nodata.txt"/>
 	</node>
 	<node name="Museum" color="artist" thumbnail="thumbnails/museum.png" LargeImage="upload/muzeum.jpg" texturl="upload/nodata.txt">
-		<node name="Milica Ruzicic" color="guestartist"  thumbnail="thumbnails/milica.ruzicic.jpg" LargeImage="upload/muzeum.jpg" texturl="upload/milica.ruzicic.txt"/>
+		<node name="Milica Ruzicic" color="guestartist"  thumbnail="thumbnails/milica.ruzicic.jpg" LargeImage="upload/milica.ruzicic.jpg" texturl="upload/milica.ruzicic.txt"/>
 		<node name="Maja Radanovic" color="guestartist"  thumbnail="thumbnails/maja.radanovic.jpg" LargeImage="upload/muzeum.jpg" texturl="upload/maja.radanovic.txt"/>
-		<node name="Mica Stajic" color="guestartist"  thumbnail="thumbnails/mica.stajic.jpg" LargeImage="upload/muzeum.jpg" texturl="upload/mica.stajic.txt"/>
-		<node name="Marko Crnobrnja" color="guestartist"  thumbnail="thumbnails/marko.crnobrnja.jpg" LargeImage="upload/muzeum.jpg" texturl="upload/marko.crnobrnja.txt"/>
+		<node name="Mica Stajcic" color="guestartist"  thumbnail="thumbnails/mica.stajcic.jpg" LargeImage="upload/mica.stajcic.jpg" texturl="upload/mica.stajic.txt"/>
+		<node name="Marko Crnobrnja" color="guestartist"  thumbnail="thumbnails/marko.crnobrnja.jpg" LargeImage="upload/marko.crnobrnja.jpg" texturl="upload/marko.crnobrnja.txt"/>
 		<node name="Dragan Rajsic" color="guestartist"  thumbnail="thumbnails/dragan.rajsic.jpg" LargeImage="upload/muzeum.jpg" texturl="upload/dragan.rajsic.txt"/>
-		<node name="Davor Dukic" color="guestartist"  thumbnail="thumbnails/davor.dukic.jpg" LargeImage="upload/muzeum.jpg" texturl="upload/davor.dukic.txt"/>
+		<node name="Davor Dukic" color="guestartist"  thumbnail="thumbnails/davor.dukic.jpg" LargeImage="upload/davor.dukic.jpg" texturl="upload/davor.dukic.txt"/>
 	</node>
 		<node name="OutFrends" color="guestartist"  thumbnail="thumbnails/frends.png" LargeImage="upload/rados.antonijevic.jpg" texturl="upload/nodata.txt">
 		<node name="OutFrends" color="guestartist"  thumbnail="thumbnails/frends.png" LargeImage="upload/dragan.djordjevic.jpg" texturl="upload/nodata.txt"/>
@@ -43,8 +43,8 @@
 		<node name="Ana Petrovic"   	color="guestartist"   thumbnail="thumbnails/out.png" LargeImage="upload/ana.petrovic.jpg" texturl="upload/nodata.txt"/>
 		<node name="Marko Markovic"		color="guestartist"   thumbnail="thumbnails/out.png" LargeImage="upload/marko.markovic.jpg" texturl="upload/nodata.txt"/>	
 	</node>
-	<node name="Dragan Djordjevic" color="artist"   thumbnail="thumbnails/zmaj.jpg"  LargeImage="upload/dragan.djordjevic.jpg" texturl="upload/dragan.djordjevic.txt"  >
-		<node name="Tijana Knezevic"  color="guestartist"  thumbnail="thumbnails/tijana.knezevic.jpg.png" LargeImage="upload/tijana.knezevic.jpg" texturl="upload/nodata.txt">
+	<node name="Dragan Djordjevic" color="artist"   thumbnail="thumbnails/dragan.djordjevic.jpg"  LargeImage="upload/dragan.djordjevic.jpg" texturl="upload/dragan.djordjevic.txt"  >
+		<node name="Tijana Knezevic"  color="guestartist"  thumbnail="thumbnails/tijana.knezevic.jpg" LargeImage="upload/tijana.knezevic.jpg" texturl="upload/nodata.txt">
 		<node name="Virvel"           color="guestartist"  thumbnail="thumbnails/virvel.jpg" LargeImage="upload/virvel.jpg" texturl="upload/nodata.txt"/>
 		</node>
 		<node name="Marija Skoko"   color="guestartist"   thumbnail="thumbnails/marija.skoko.jpg" LargeImage="upload/marija.skoko.jpg" texturl="upload/nodata.txt"/>
@@ -60,7 +60,7 @@
 		<node name="Milica Ruzicic"  thumbnail="thumbnails/milica.ruzicic.jpg" texturl="upload/nodata.txt"/>
 		<node name="Danilo Prnjat" thumbnail="thumbnails/danilo.prnjat.jpg" texturl="upload/nodata.txt"/> 
 	</node>	
-	    <node name="Mirjana Peitler-Selakov " color="organisation" thumbnail="thumbnails/mirjana.peiter.jpg"/>
-		<node name="Mrdjan Bajic" color="organisation" thumbnail="thumbnails/mrdjan.bajic.jpg"/>
-		<node name="Werner Fenz " color="organisation" thumbnail="thumbnails/werner.fenz.jpg"/>	
+	    <node name="Mirjana Peitler-Selakov " color="organisation" thumbnail="thumbnails/mirjana.peiter.jpg" LargeImage="upload/boris.sribar.jpg" texturl="upload/institut.txt"/>
+		<node name="Mrdjan Bajic" color="organisation" thumbnail="thumbnails/mrdjan.bajic.jpg"LargeImage="upload/mrdjan.bajic.jpg" texturl="upload/institut.txt"/>
+		<node name="Werner Fenz " color="organisation" thumbnail="thumbnails/werner.fenz.jpg" LargeImage="upload/boris.sribar.jpg" texturl="upload/institut.txt"/>	
 </node>
