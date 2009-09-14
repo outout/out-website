@@ -19,7 +19,6 @@
 
 	<mx:Script>
 		<![CDATA[
-			import mx.automation.delegates.controls.ProgressBarAutomationImpl;
 			import mx.controls.Alert;
 			import com.kapit.visualizer.events.VisualizerEvent;
 		    import com.pages.AbOUT;
