@@ -12,36 +12,32 @@
 	backgroundImage="assets/INDEXbgd.swf"
 	xmlns:controlsflv="com.fxcomponents.controls.*"
 	xmlns:controls="com.controls.*">
-
-	<!--
-		This application demonstrates how to use Visualizer component to display Hierarchical data in a Radial layout
-	-->
-
 	<mx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
+			import mx.controls.Image;
+      	    import mx.controls.ToolTip;
+            import mx.events.CloseEvent;
+			import mx.events.ListEvent;
+            import mx.collections.ICollectionView;
+			import mx.collections.XMLListCollection;
+			import mx.managers.PopUpManager;
+            import mx.containers.TitleWindow;
+			import mx.effects.easing.Elastic;
+            import mx.preloaders.Preloader
+
+            import flash.geom.Point;
+            import flash.events.Event
+
+			import com.kapit.visualizer.LayoutConstants;
+			import com.kapit.diagram.layouts.model.Node;
 			import com.kapit.visualizer.events.VisualizerEvent;
+
 		    import com.pages.AbOUT;
 		    import com.pages.AbOUTweb;
 		    import com.pages.UploadForm;   
-            import com.pages.Rados;   
-			import mx.events.ListEvent;
-			import mx.controls.Image;
-			import mx.collections.XMLListCollection;
-			import com.kapit.visualizer.LayoutConstants;
-			import mx.managers.PopUpManager;
-            import mx.containers.TitleWindow;
-            import flash.geom.Point;
-      	    import mx.controls.ToolTip;
-			import mx.controls.Image;
-			import com.kapit.visualizer.LayoutConstants;
-			import com.kapit.diagram.layouts.model.Node;
-			import mx.effects.easing.Elastic;    
-			import mx.controls.Image;
-            import mx.events.CloseEvent;
-            import flash.events.Event
-            import mx.events.ListEvent;
-            import mx.preloaders.Preloader
+            import com.pages.Rados;  
+                        
             [Bindable]
             
             [Embed(source="assets/folderopen.png")]
@@ -50,25 +46,25 @@
             [Bindable]
             [Embed(source="assets/folderclose.png")]
             public var folderclose:Class;
-      
-      		 [Bindable]
-     	     [Embed(source="./assets/artist.png")] 
-              public var artist:Class; 
- 
+              
+            [Bindable]
+            [Embed(source="./assets/artist.png")] 
+            public var artist:Class; 
+             
             [Bindable]
             [Embed(source="./assets/guestartist.png")] 
-             public var guestartist:Class; 
- 
-             [Bindable]
-             [Embed(source="./assets/organisation.png")] 
-             public var organisation:Class; 
-
-             [Bindable]
-             [Embed(source="./assets/outguest.png")] 
-              public var outguest:Class; 
-      		
-      		 [Bindable]
-			 private var source:String = "video/out.flv";
+            public var guestartist:Class; 
+             
+            [Bindable]
+            [Embed(source="./assets/organisation.png")] 
+            public var organisation:Class; 
+            
+            [Bindable]
+            [Embed(source="./assets/outguest.png")] 
+             public var outguest:Class; 
+              
+            [Bindable]
+            private var source:String = "video/out.flv";
       
 
   		    [Bindable]
@@ -84,34 +80,29 @@
 			    onLength:4,
 			    offLength:4
 			};
-           // public function openWindow(event:Event):void
-           // {
-           // if(event.currentTarget.labelFields =="1"){
-           // PopUpManager.createPopUp(this,UploadForm,false);
-           // }
-           // else
-           // Alert.show("No Data");
+           
+           private const dpLink:Array = [
+               {label: "Straight",          data: LayoutConstants.STRAIGHT_LINE},
+               {label: "Straight polyline", data: LayoutConstants.STRAIGHT_POLYLINE},
+               {label: "Curved polyline",   data: LayoutConstants.CURVED_POLYLINE},
+               {label: "Orth. polyline",    data: LayoutConstants.ORTHOGONAL_STRAIGHT_POLYLINE},
+               {label: "Orth. curved",      data: LayoutConstants.ORTHOGONAL_CURVED_POLYLINE}
+               ];
 
-           // }
-            import mx.collections.ICollectionView;
-            import mx.events.ListEvent;
-
-
-
-
-
-           //tree fotoalbum
-		import mx.events.ListEvent;
-		private function tree_itemClick(evt:ListEvent):void {
+           //tree fotoalbum		
+		private function tree_itemClick(evt:ListEvent):void 
+		{
 			//---------
 			 var item:Object = Tree(evt.currentTarget).selectedItem;
-                if (tree.dataDescriptor.isBranch(item)) {
+                if (tree.dataDescriptor.isBranch(item)) 
+                {
                     tree.expandItem(item, !tree.isItemOpen(item), true);
                 }
 				var t:Tree = evt.currentTarget as Tree;
 				var dataObj:Object = evt.itemRenderer.data;
 			//---------	
-				if (dataObj.hasOwnProperty("@LargeImage")) {
+				if (dataObj.hasOwnProperty("@LargeImage")) 
+				{
 					
 					var url:String = dataObj.@texturl.toString();
 					var loadit:URLLoader = new URLLoader();
@@ -119,32 +110,40 @@
                     loadit.load(new URLRequest(url));
 					Image1.source = dataObj.@LargeImage;
 					ImageLinkBar.selectedIndex=0;
-				} else if (t.dataDescriptor.isBranch(t.selectedItem)) {
+				} 
+				else if (t.dataDescriptor.isBranch(t.selectedItem)) 
+				{
 					Image1.source = null;
 					panel.status = "";
 				}
 			}
-			private function completeHandler(event:Event):void {
-			autortext.text = event.currentTarget.data as String;
-				}
+			
+			private function completeHandler(event:Event):void 
+			{
+			    autortext.text = event.currentTarget.data as String;
+			}
 
-			private function tree_labelFunc(item:Object):String {
+			private function tree_labelFunc(item:Object):String 
+			{
 				var suffix:String = "";
-				if (tree.dataDescriptor.isBranch(item)) {
+				if (tree.dataDescriptor.isBranch(item)) 
+				{
 					suffix = " (" + item.children().length() + ")";
 				}
 				return item.@name + suffix;
-				//---
+				/*
 				var children:ICollectionView;
                 if (tree.dataDescriptor.isBranch(item)) {
                     children = tree.dataDescriptor.getChildren(item);
                     suffix = " (" + children.length + ")";
                 }
                 return item[tree.labelField] + suffix;
+                */
 			}
 
 
-			private function Image1_complete(evt:Event):void {
+			private function Image1_complete(evt:Event):void 
+			{
 				panel.status = (Image1.bytesTotal/1024).toFixed(2) + 'KB';
 			}
            //---------------------------------------
@@ -153,17 +152,18 @@
            //---end tree fotoalbum
 
 			private function onCreationComplete():void
-			{
-				var dpLink:Array = [	{label: "Straight", data: LayoutConstants.STRAIGHT_LINE},
-						{label: "Straight polyline", data: LayoutConstants.STRAIGHT_POLYLINE},
-						{label: "Curved polyline", data: LayoutConstants.CURVED_POLYLINE},
-						{label: "Orth. polyline", data: LayoutConstants.ORTHOGONAL_STRAIGHT_POLYLINE},
-						{label: "Orth. curved", data: LayoutConstants.ORTHOGONAL_CURVED_POLYLINE}
-					];
+			{				
 				linkDrawingTypeCombo.dataProvider = dpLink;
 				linkDrawingTypeCombo.selectedIndex = 4;
 				
-				var urlRequest:URLRequest = new URLRequest("xmlData/Network.xml");
+				requestNetworkData();
+				
+				setVisualizerProperties();
+			}
+			
+			private function requestNetworkData():void
+			{
+			    var urlRequest:URLRequest = new URLRequest("xmlData/Network.xml");
 				var urlLoader:URLLoader = new URLLoader();
 				urlLoader.addEventListener(Event.COMPLETE, setDataprovider);
 				urlLoader.load(urlRequest);
@@ -176,187 +176,284 @@
 			
 			private function setVisualizerProperties():void
 			{
-				myVisualizer.radialLayout.minimalRadius=20;
-				myVisualizer.radialLayout.nodesSpacing=20;
-				myVisualizer.radialLayout.overlappingAvoidMethod=LayoutConstants.DETERMINISTIC_OVERLAP_AVOID;
-				myVisualizer.radialLayout.edgeDrawing=LayoutConstants.ORTHOGONAL_CURVED_POLYLINE;
-				myVisualizer.radialLayout.rootSelectionPolicy=LayoutConstants.DIRECTED_ROOT_SELECTION;
-				
-
-
+				with (myVisualizer.radialLayout)
+				{
+				    minimalRadius=20;
+				    nodesSpacing=20;
+				    overlappingAvoidMethod=LayoutConstants.DETERMINISTIC_OVERLAP_AVOID;
+				    edgeDrawing=LayoutConstants.ORTHOGONAL_CURVED_POLYLINE;	
+				    rootSelectionPolicy=LayoutConstants.DIRECTED_ROOT_SELECTION;			
+				}
 			}
 			
 			private function _onLinkDrawingTypeChange(event : ListEvent) : void
 			{
 				myVisualizer.radialLayout.edgeDrawing = linkDrawingTypeCombo.selectedItem.data;
 			}
-			 
-			
+	
      ]]>
 	</mx:Script>
-
-<mx:ViewStack id="viewStack" width="100%" height="100%" >
-		<mx:VBox    id="NetworkImage"
-			        backgroundColor="#BDBDBD"
-		            width="100%"
-		            height="100%" backgroundAlpha="0.08">
-		<visualizer:Visualizer 
-		id="myVisualizer"
-		width="100%"
-		height="100%"
-		layout="{LayoutConstants.RADIAL_LAYOUT}"
-		linkStyle="{linkStyle}"
-		defaultNodeWidth="120"
-		defaultNodeHeight="120"
-		tooltipFields="@name"
-		labelFields="@num"
-		visibilityLevel="{visibility.value}"
-		expandOnDoubleClick="true"
-		multimediaClass="{Image}"
-		multimediaDataSource="{'@thumbnail'}"
-		creationComplete="onCreationComplete(); setVisualizerProperties()"
-		>		
-	 </visualizer:Visualizer>
-		    </mx:VBox>
-		    <mx:VBox id="Artistpage" 
-		            width="100%"
-		            height="100%">
-		            	<mx:HDividedBox width="100%" height="100%">
-		<mx:Panel width="200" height="100%">
-			<mx:Tree id="tree"
-					dataProvider="{myVisualizer.dataProvider}"
-					labelFunction="tree_labelFunc"
-					showRoot="false"
-					width="100%"
-					height="100%"
-					itemClick="tree_itemClick(event);" 
-					folderOpenIcon="@Embed('assets/folderopen.png')"
-           			folderClosedIcon="@Embed('assets/folderclose.png')"
-           			iconField="@color" useHandCursor="true"/>
-		</mx:Panel>
-		<mx:Panel id="panel"
-				width="100%"
-				height="100%"
-				backgroundColor="white" horizontalAlign="center" verticalAlign="middle">
-			<mx:VDividedBox height="100%" width="100%" verticalAlign="middle" horizontalAlign="center" paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="10">
-			
-			<mx:Grid>
-				<mx:GridRow paddingTop="30" horizontalAlign="center">
-					<mx:GridItem>
-					<mx:ViewStack id="ImageViewStack">	
-					<mx:VBox    id="ImageStack1" label="Image1">			
-                    <controls:LoadingImage id="Image1" width="550" height="550" source="em "
-					progressPercentWidth="80" progressHeight="20" />
-					</mx:VBox>
-					<mx:VBox    id="ImageStack2" label="Image2">	
-					 <controls:LoadingImage id="Image2" width="550" height="550"
-					progressPercentWidth="80" progressHeight="20" />
-					</mx:VBox>
-					<mx:VBox    id="ImageStack3" label="Image3">	
-					 <controls:LoadingImage id="Image3" width="550" height="550"
-					progressPercentWidth="80" progressHeight="20" />
-					</mx:VBox>
-
-					<mx:VBox    id="ImageStack4" label="Image4">	
-					 <controls:LoadingImage id="Image4" width="550" height="550"
-					progressPercentWidth="80" progressHeight="20" />
-					</mx:VBox>
-					<mx:VBox    id="ImageStack5" label="Image5">	
-					 <controls:LoadingImage id="Image5" width="550" height="550"
-					progressPercentWidth="80" progressHeight="20" />
-					</mx:VBox>
-					</mx:ViewStack>
-					</mx:GridItem>
-				</mx:GridRow>
-				<mx:GridRow>
-					<mx:GridItem>
-					<mx:LinkBar id="ImageLinkBar" color="0x0050AA" horizontalAlign="center" width="550" fontWeight="bold" dataProvider="{ImageViewStack}"  selectedIndex="0" visible="false"/>
-					</mx:GridItem>
-				</mx:GridRow>
-			</mx:Grid>
-
-						
-
-				<mx:Text   text="Text" width="100%" height="150" id="autortext"/>
-			</mx:VDividedBox>
-			<mx:ControlBar>
-			</mx:ControlBar>
-		</mx:Panel>		
-
-	</mx:HDividedBox>
-		            
-		            
-		           
-		    </mx:VBox>
-		    <mx:VBox id="helpSilver"
-		            width="100%"
-		            height="100%" verticalGap="0" horizontalAlign="center" verticalAlign="top">
-		        <controlsflv:FXVideo  width="100%" height="95%" source="{source}" autoPlay="false" bufferTime="10"  backgroundColor="#5F5F5F" borderStyle="solid" borderThickness="6" borderColor="#B90488"/> 
-		    </mx:VBox>
-		</mx:ViewStack>
-
-
-		<mx:ApplicationControlBar x="0" y="0"
-			 width="100%" dock="true"
-			 fillAlphas="[1.0, 1.0]" 
-			 fillColors="[#FFFFFF, #FFFFFF]" height="38">
+	<mx:ApplicationControlBar 
+	    x="0" 
+	    y="0"
+	    width="100%" 
+	    dock="true"
+	    fillAlphas="[1.0, 1.0]"
+	    fillColors="[#FFFFFF, #FFFFFF]" 
+	    height="38">
 		<mx:Grid >
-			<mx:GridRow width="100%" height="100%">
-				<mx:GridItem width="100%" height="100%">
-					 <mx:LinkButton id="a0" label="NetImage" icon="@Embed(source='/assets/target.png')"
-						 click="viewStack.selectedChild=NetworkImage,visibility.visible=true,linkDrawingTypeCombo.visible=true ;" 
-					     buttonMode="true"  themeColor="#5E08B6" fontSize="11"> 
-					 </mx:LinkButton>
-					<mx:LinkButton id="b1" label="Artists" icon="@Embed(source='/assets/target.png')"
-						 click="viewStack.selectedChild=Artistpage;" 
-					     buttonMode="true"  themeColor="#0663FE" fontSize="11"> 
-					 </mx:LinkButton>
-					<mx:LinkButton click="PopUpManager.createPopUp(this,AbOUT,false);"
-						label="AbOUT" styleName="DarkLinkButton" color="#181818" 
-						icon="@Embed('assets/target.png')"  themeColor="#461AEA" width="95" fontWeight="bold" fontSize="11">
-					               </mx:LinkButton>
-					<mx:LinkButton click="PopUpManager.createPopUp(this,AbOUTweb,false);"
-						label="AbOUTweb" styleName="DarkLinkButton" color="#181818" 
-						icon="@Embed('assets/target.png')"  themeColor="#059A39" width="114" fontWeight="bold" fontSize="11">
-					               </mx:LinkButton>
-					<mx:LinkButton click="PopUpManager.createPopUp(this,UploadForm,false);"
-						label="Upload File" styleName="DarkLinkButton" color="#181818" 
-						icon="@Embed('assets/uploadfile.png')"  themeColor="#06F4E0" width="120" fontSize="11">
-					               </mx:LinkButton>
-					<mx:LinkButton click="viewStack.selectedChild=helpSilver;"
-						label="HELP" styleName="DarkLinkButton" color="#181818" 
-						icon="@Embed('assets/uploadfile.png')"  themeColor="#06F4E0" width="120" fontSize="11">
-					               </mx:LinkButton>
+    		<mx:GridRow width="100%" height="100%">
+        		<mx:GridItem width="100%" height="100%">
+            		<mx:LinkButton id="a0" 
+            		    label="NetImage" 
+            		    icon="@Embed(source='/assets/target.png')"
+            		    click="viewStack.selectedChild=NetworkImage,visibility.visible=true,linkDrawingTypeCombo.visible=true ;"
+            		    buttonMode="true"  
+            		    themeColor="#5E08B6" 
+            		    fontSize="11">
+        		    </mx:LinkButton>
+					<mx:LinkButton id="b1" 
+					    label="Artists" 
+					    icon="@Embed(source='/assets/target.png')"
+					    click="viewStack.selectedChild=Artistpage;"
+					    buttonMode="true"  
+					    themeColor="#0663FE" 
+					    fontSize="11"> 
+				    </mx:LinkButton>
+					<mx:LinkButton 
+					    click="PopUpManager.createPopUp(this,AbOUT,false);"
+					    label="AbOUT" 
+					    styleName="DarkLinkButton" 
+					    color="#181818"
+					    icon="@Embed('assets/target.png')"  
+					    themeColor="#461AEA" 
+					    width="95" 
+					    fontWeight="bold" 
+					    fontSize="11">
+				    </mx:LinkButton>
+					<mx:LinkButton 
+					    click="PopUpManager.createPopUp(this,AbOUTweb,false);"
+					    label="AbOUTweb" 
+					    styleName="DarkLinkButton" 
+					    color="#181818" 
+						icon="@Embed('assets/target.png')"  
+						themeColor="#059A39" width="114" 
+						fontWeight="bold" 
+						fontSize="11">
+				    </mx:LinkButton>
+				    <mx:LinkButton 
+				        click="PopUpManager.createPopUp(this,UploadForm,false);"
+						label="Upload File" 
+						styleName="DarkLinkButton" 
+						color="#181818" 
+						icon="@Embed('assets/uploadfile.png')"  
+						themeColor="#06F4E0" 
+						width="120" 
+						fontSize="11">
+					</mx:LinkButton>
+					<mx:LinkButton 
+					    click="viewStack.selectedChild=helpSilver;"
+						label="HELP" 
+						styleName="DarkLinkButton" 
+						color="#181818" 
+						icon="@Embed('assets/uploadfile.png')"  
+						themeColor="#06F4E0" 
+						width="120" 
+						fontSize="11">
+					</mx:LinkButton>
 				</mx:GridItem>
 			</mx:GridRow>
 		</mx:Grid>
 		<mx:Spacer width="100%"/>
 		<mx:Grid>
-			<mx:GridRow width="100%" height="100%">
-				<mx:GridItem width="100%" height="100%">
-				
-				<mx:LinkButton toolTip="Fit to content" id="autoFit" 
+    		<mx:GridRow width="100%" height="100%">
+        		<mx:GridItem width="100%" height="100%">
+    				<mx:LinkButton id="autoFit"
+    				    toolTip="Fit to content"  
 						click="myVisualizer.autoFit()" 
-						icon="@Embed(source='/assets/iconFit.png')" 
-						  width="30" themeColor="#9C04B7"/>
-					<mx:LinkButton toolTip="Zoom Out" id="zoomOut" 
+						icon="@Embed(source='/assets/iconFit.png')"
+						width="30" 
+						themeColor="#9C04B7"/>
+					<mx:LinkButton id="zoomOut"
+					    toolTip="Zoom Out"  
 						click="myVisualizer.zoomContent(0.9)" 
-						icon="@Embed(source='/assets/iconZoomOut.png')" 
-					  buttonMode="true"  
-						 width="29" themeColor="#BB0367"/>
-					<mx:LinkButton toolTip="Zoom in" id="zoomIn" 
+						icon="@Embed(source='/assets/iconZoomOut.png')"
+						buttonMode="true"
+						width="29" 
+						themeColor="#BB0367"/>
+					<mx:LinkButton id="zoomIn" 
+					    toolTip="Zoom in" 
 						click="myVisualizer.zoomContent(1.1)" 
 						icon="@Embed(source='/assets/iconZoomIn.png')"  
-						buttonMode="true" 
-					      width="28" themeColor="#BF0458"/>
-					<mx:HSlider id="visibility" minimum="0" maximum="3" snapInterval="1" tickInterval="1" value="1" showTrackHighlight="true" themeColor="#44A703" height="28" visible="true"/>
-					<mx:ComboBox id="linkDrawingTypeCombo" change="_onLinkDrawingTypeChange(event)" width="119" height="28"/>
-				</mx:GridItem>
-			</mx:GridRow>
-		</mx:Grid>
-		</mx:ApplicationControlBar>
-	<mx:VBox height="100%" verticalAlign="top" left="2" top="2">
-		
+						buttonMode="true"
+						width="28" 
+						themeColor="#BF0458"/>
+					<mx:HSlider id="visibility" 
+					    minimum="0" 
+					    maximum="3" 
+					    snapInterval="1" 
+					    tickInterval="1" 
+					    value="1" 
+					    showTrackHighlight="true" 
+					    themeColor="#44A703" 
+					    height="28" 
+					    visible="true"/>
+				    <mx:ComboBox id="linkDrawingTypeCombo" 
+				        change="_onLinkDrawingTypeChange(event)" 
+				        width="119" 
+				        height="28"/>
+		        </mx:GridItem>
+	        </mx:GridRow>
+        </mx:Grid>
+    </mx:ApplicationControlBar>
+	<mx:ViewStack id="viewStack" width="100%" height="100%" >
+	    <mx:VBox id="NetworkImage"
+	        backgroundColor="#BDBDBD"
+	        width="100%"
+	        height="100%" 
+	        backgroundAlpha="0.08" >
+    		<visualizer:Visualizer id="myVisualizer"
+    		    width="100%"
+    		    height="100%"
+    		    layout="{LayoutConstants.RADIAL_LAYOUT}"
+    		    linkStyle="{linkStyle}"
+    		    defaultNodeWidth="120"
+    		    defaultNodeHeight="120"
+    		    tooltipFields="@name"
+    		    labelFields="@num"
+    		    visibilityLevel="{visibility.value}"
+    		    expandOnDoubleClick="true"
+    		    multimediaClass="{Image}"
+    		    multimediaDataSource="{'@thumbnail'}"
+    		    creationComplete="onCreationComplete()" />
+	    </mx:VBox>
+	    <mx:VBox id="Artistpage" 
+	        width="100%"
+	        height="100%">
+		    <mx:HDividedBox width="100%" height="100%">
+        	    <mx:Panel width="200" height="100%">
+            	    <mx:Tree id="tree"
+            	        dataProvider="{myVisualizer.dataProvider}"
+            	        labelFunction="tree_labelFunc"
+            	        showRoot="false"
+            	        width="100%"
+            	        height="100%"
+            	        itemClick="tree_itemClick(event);"
+            	        folderOpenIcon="@Embed('assets/folderopen.png')"
+            	        folderClosedIcon="@Embed('assets/folderclose.png')"
+            	        iconField="@color" 
+            	        useHandCursor="true" />
+    	        </mx:Panel>
+    	        <mx:Panel id="panel"
+    	            width="100%"
+    	            height="100%"
+    	            backgroundColor="white" 
+    	            horizontalAlign="center" 
+    	            verticalAlign="middle" >
+    	            <mx:VDividedBox 
+    	                height="100%" 
+    	                width="100%" 
+    	                verticalAlign="middle" 
+    	                horizontalAlign="center" 
+    	                paddingBottom="5" 
+    	                paddingLeft="5" 
+    	                paddingRight="5" 
+    	                paddingTop="10" >
+    	                <mx:Grid>
+        	                <mx:GridRow paddingTop="30" horizontalAlign="center" >
+            	                <mx:GridItem>
+                	                <mx:ViewStack id="ImageViewStack" >
+                    	                <mx:VBox id="ImageStack1" 
+                    	                    label="Image1" >
+                    	                    <controls:LoadingImage id="Image1" 
+                    	                        width="550" 
+                    	                        height="550" 
+                    	                        source="em "
+                    	                        progressPercentWidth="80" 
+                    	                        progressHeight="20" />
+            	                        </mx:VBox>
+            	                        <mx:VBox id="ImageStack2" 
+            	                            label="Image2">
+            	                            <controls:LoadingImage id="Image2" 
+            	                                width="550" 
+            	                                height="550" 
+            	                                progressPercentWidth="80" 
+            	                                progressHeight="20" />
+    	                                </mx:VBox>
+    	                                <mx:VBox  id="ImageStack3" 
+    	                                    label="Image3">
+    	                                    <controls:LoadingImage id="Image3" 
+    	                                        width="550" 
+    	                                        height="550"
+    	                                        progressPercentWidth="80" 
+    	                                        progressHeight="20" />
+                                        </mx:VBox>
+                                        <mx:VBox id="ImageStack4" 
+                                            label="Image4">
+                                            <controls:LoadingImage id="Image4" 
+                                                width="550" 
+                                                height="550"
+                                                progressPercentWidth="80" 
+                                                progressHeight="20" />
+                                        </mx:VBox>
+                                        <mx:VBox  id="ImageStack5" 
+                                            label="Image5">
+                                            <controls:LoadingImage id="Image5" 
+                                                width="550" 
+                                                height="550"
+                                                progressPercentWidth="80" 
+                                                progressHeight="20" />
+                                        </mx:VBox>
+                                    </mx:ViewStack>
+                                </mx:GridItem>
+                            </mx:GridRow>
+                            <mx:GridRow>
+                                <mx:GridItem>
+                                    <mx:LinkBar id="ImageLinkBar" 
+                                        color="0x0050AA" 
+                                        horizontalAlign="center" 
+                                        width="550" 
+                                        fontWeight="bold" 
+                                        dataProvider="{ImageViewStack}"  
+                                        selectedIndex="0" 
+                                        visible="false"/>
+                                </mx:GridItem>
+                            </mx:GridRow>
+                        </mx:Grid>
+                        <mx:Text id="autortext"  
+                            text="Text" 
+                            width="100%" 
+                            height="150" />
+                    </mx:VDividedBox>
+                    <mx:ControlBar>
+                    </mx:ControlBar>
+                </mx:Panel>
+            </mx:HDividedBox>
+	    </mx:VBox>
+	    <mx:VBox id="helpSilver"
+	        width="100%"
+		    height="100%" 
+		    verticalGap="0" 
+		    horizontalAlign="center" 
+		    verticalAlign="top">
+		    <controlsflv:FXVideo  
+		        width="100%" 
+		        height="95%" 
+		        source="{source}" 
+		        autoPlay="false" 
+		        bufferTime="10" 
+		        backgroundColor="#5F5F5F" 
+		        borderStyle="solid" 
+		        borderThickness="6" 
+		        borderColor="#B90488"/> 
+	    </mx:VBox>
+	</mx:ViewStack>
+	<!--
+	<mx:VBox 
+	    height="100%" 
+	    verticalAlign="top" 
+	    left="2" 
+	    top="2">		
 		<mx:HBox width="100%">
 			<mx:Spacer height="26" />
 		</mx:HBox>
@@ -364,7 +461,6 @@
 		</mx:HBox>
 		<mx:Spacer  width="100%"/>
 	</mx:VBox>
-
-
+	-->	
 </mx:Application>
 
