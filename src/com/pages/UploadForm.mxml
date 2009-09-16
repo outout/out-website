@@ -3,9 +3,10 @@
     layout="absolute" 
     title="Upload Form" 
     initialize="initializeApplication();"
-    creationComplete="centerWindow()"
+    creationComplete="centerWindow()"    
+    close="PopUpManager.removePopUp(this)"
+    mouseDownOutside="PopUpManager.removePopUp(this)"
     showCloseButton="true" 
-    close="closeWindow()" 
     horizontalAlign="center" 
     verticalAlign="top" width="818" height="362" xmlns:com="com.flashdev.file.*">
 

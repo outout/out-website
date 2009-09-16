@@ -13,7 +13,7 @@
 	xmlns:controlsflv="com.fxcomponents.controls.*"
 	xmlns:controls="com.controls.*">
 	<mx:Script>
-		<![CDATA[
+		<![CDATA[		    
 			import mx.controls.Alert;
 			import mx.controls.Image;
       	    import mx.controls.ToolTip;
@@ -190,6 +190,11 @@
 			{
 				myVisualizer.radialLayout.edgeDrawing = linkDrawingTypeCombo.selectedItem.data;
 			}
+
+			protected function OpenPopUp(class_to_open:Class):void
+			{
+			    PopUpManager.createPopUp(this, class_to_open, false);
+			}
 	
      ]]>
 	</mx:Script>
@@ -220,8 +225,8 @@
 					    themeColor="#0663FE" 
 					    fontSize="11"> 
 				    </mx:LinkButton>
-					<mx:LinkButton 
-					    click="PopUpManager.createPopUp(this,AbOUT,false);"
+					<mx:LinkButton id="AboutBtn"
+					    click="OpenPopUp(AbOUT)"
 					    label="AbOUT" 
 					    styleName="DarkLinkButton" 
 					    color="#181818"
@@ -231,8 +236,8 @@
 					    fontWeight="bold" 
 					    fontSize="11">
 				    </mx:LinkButton>
-					<mx:LinkButton 
-					    click="PopUpManager.createPopUp(this,AbOUTweb,false);"
+					<mx:LinkButton id="AbOUTwebBtn"
+					    click="OpenPopUp(AbOUTweb)"
 					    label="AbOUTweb" 
 					    styleName="DarkLinkButton" 
 					    color="#181818" 
@@ -241,8 +246,8 @@
 						fontWeight="bold" 
 						fontSize="11">
 				    </mx:LinkButton>
-				    <mx:LinkButton 
-				        click="PopUpManager.createPopUp(this,UploadForm,false);"
+				    <mx:LinkButton id="UploadFormBtn"
+				        click="OpenPopUp(UploadForm)"
 						label="Upload File" 
 						styleName="DarkLinkButton" 
 						color="#181818" 

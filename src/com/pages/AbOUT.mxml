@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="600" height="400" creationComplete="centerWindow()" title="AbOUT" showCloseButton="true" close="closeWindow()">
+<mx:TitleWindow 
+    xmlns:mx="http://www.adobe.com/2006/mxml" 
+    layout="absolute" 
+    width="600" 
+    height="400" 
+    creationComplete="centerWindow()" 
+    close="PopUpManager.removePopUp(this)"
+    mouseDownOutside="PopUpManager.removePopUp(this)"
+    title="AbOUT" 
+    showCloseButton="true" 
+    >
 	
 	<mx:Script>
         <![CDATA[
@@ -10,18 +20,23 @@
             	PopUpManager.centerPopUp(this);
             }
             
-            public function closeWindow():void
-            {
-            	PopUpManager.removePopUp(this);
-            }
-            
        ]]>
        
 	</mx:Script>
-	<mx:TextArea right="5" left="5" top="5" bottom="5">
-		<mx:text><![CDATA[In the public space of a foreign city, young Serbian artists – selected and supervised by Belgrade sculptor Mrdjan Bajić – formulate their questions and reflections on their own identity. Shaped not only by nation and religion, as simplified interpretations would often have us believe, their works and interventions in the city centre of Graz – from the Franciscan Church, across the river Mur, to the Church of the Brothers Hospitallers – are doubly context-related: They refer to the specific site and to the artists’ places of origin and call for a discussion in the public.
-Co-produced by steirischer herbst & Institut für Kunst im öffentlichen Raum Steiermark
-Carried out with funds from Kunst im öffentlichen Raum Steiermark]]></mx:text>
+	<mx:TextArea right="5" left="5" top="5" bottom="5" 
+	    paddingBottom="5"
+	    paddingTop="5"
+	    paddingLeft="5"
+	    paddingRight="5"
+	    editable="false" >
+		<mx:htmlText><![CDATA[
+		<p>In the public space of a foreign city, young Serbian artists, selected and supervised by Belgrade sculptor <b>Mrdjan Bajić</b>, formulate their questions and reflections on their own identity.</p> 
+		
+		<p>Shaped not only by nation and religion, as simplified interpretations would often have us believe, their works and interventions in the city centre of Graz – from the Franciscan Church, across the river Mur, to the Church of the Brothers Hospitallers – are doubly context-related: 
+<font color="#9a9a9a" size="12">They refer to the specific site and to the artists’ places of origin and call for a discussion in the public.</font></p>
+
+        <p>Co-produced by steirischer herbst & Institut für Kunst im öffentlichen Raum Steiermark</p>
+        <p>Carried out with funds from Kunst im öffentlichen Raum Steiermark</p>]]></mx:htmlText>
 	</mx:TextArea>
 	
 </mx:TitleWindow>

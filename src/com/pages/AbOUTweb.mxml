@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="628" height="488" creationComplete="centerWindow()" title="AbOUTweb" showCloseButton="true" close="closeWindow()">
+<mx:TitleWindow 
+    xmlns:mx="http://www.adobe.com/2006/mxml" 
+    layout="absolute" 
+    width="628" 
+    height="488" 
+    creationComplete="centerWindow()" 
+    close="PopUpManager.removePopUp(this)"
+    mouseDownOutside="PopUpManager.removePopUp(this)"
+    title="AbOUTweb" 
+    showCloseButton="true" >
 	
 	<mx:Script>
         <![CDATA[
@@ -8,11 +17,6 @@
             public function centerWindow():void
             {
             	PopUpManager.centerPopUp(this);
-            }
-            
-            public function closeWindow():void
-            {
-            	PopUpManager.removePopUp(this);
             }
             
        ]]>
@@ -24,15 +28,22 @@
 				<mx:Image source="thumbnails/dejan.dimic.jpg" width="115.5" height="143"/>
 			</mx:GridItem>
 			<mx:GridItem width="100%" height="100%">
-				<mx:TextArea width="100%" height="100%" borderStyle="none">
-					<mx:text><![CDATA[Dejan Dimic
-Current
+				<mx:TextArea 
+				    width="100%" 
+				    height="100%" 
+				    borderStyle="none"
+				    editable="false" 
+				    paddingBottom="3" 
+				    paddingTop="3">
+					<mx:htmlText><![CDATA[<b><i>Dejan Dimić</i></b>
+<b>Current:</b>
 - Head of software development at Global Substation Solutions
-Past
+<b>Past</b>
 - Head of development at Europoint d.o.o.
 - Part time Ruby on Rails Software developer at Vast.com
 - Software developer – team leader at Teletrader Software AG
-http://www.linkedin.com/in/dejandimic]]></mx:text>
+
+http://www.linkedin.com/in/dejandimic]]></mx:htmlText>
 				</mx:TextArea>
 			</mx:GridItem>
 		</mx:GridRow>
@@ -41,7 +52,17 @@ http://www.linkedin.com/in/dejandimic]]></mx:text>
 				<mx:Image source="thumbnails/dragan.djordjevic.jpg" width="115" height="143.75"/>
 			</mx:GridItem>
 			<mx:GridItem width="100%" height="100%">
-				<mx:TextArea width="100%" height="100%" text="Dragan Djordjevic&#xa;Current&#xa;- Flex Front End Designer  at Global Substation Solutions&#xa;- Sculptor&#xa;Past&#xa;2006   Finished postgraduate studies at the Faculty of Fine Arts in Belgrade, Sculpture Department, &#xa;1998  Graduated Mechanical Engineering in Belgrade&#xa;www.dragandjordjevic.com&#xa;" borderStyle="none"/>
+				<mx:TextArea 
+				    width="100%" 
+				    height="100%" 
+				    borderStyle="none" 
+				    editable="false" 
+				    paddingBottom="3" 
+				    paddingTop="3">				
+				    <mx:htmlText>
+				        <![CDATA[<b><i>Dragan Djordjević</i></b><br/><b>Current:</b> Flex Front End Designer at Global Substation Solutions<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sculptor<br/><b>Past:</b><br/>2006 - Finished postgraduate studies at the Faculty of Fine Arts in Belgrade, Sculpture Department,<br/>1998 - Graduated Mechanical Engineering in Belgrade<br/><br/>www.dragandjordjevic.com]]>
+				    </mx:htmlText>
+				</mx:TextArea>
 			</mx:GridItem>
 		</mx:GridRow>
 		<mx:GridRow width="100%" height="100%">
@@ -49,13 +70,21 @@ http://www.linkedin.com/in/dejandimic]]></mx:text>
 				<mx:Image source="thumbnails/out.png" width="107.06896" height="81"/>
 			</mx:GridItem>
 			<mx:GridItem width="100%" height="100%">
-				<mx:TextArea width="100%" height="100%" borderStyle="none">
-					<mx:text><![CDATA[Open source web project developed by Dejan Dimic  (server side) and Dragan Djordjevic ( front end client)
-technology:
-ruby, flex 
-free download source :
+				<mx:TextArea 
+				    width="100%" 
+				    height="100%" 
+				    borderStyle="none" 
+				    editable="false"
+				    paddingBottom="3" 
+				    paddingTop="3">
+					<mx:htmlText>
+    					<![CDATA[<b>Open source</b> web project developed by <i>Dejan Dimić</i> and <i>Dragan Djordjević</i>. 
+
+<b>Technology:</b>
+Ruby (www.ruby-lang.org/en/), Flex (www.adobe.com/products/flex/) 
+<b>Free download source:</b>
 http://github.com/outout/out-website/tree/master
-]]></mx:text>
+]]></mx:htmlText>
 				</mx:TextArea>
 			</mx:GridItem>
 		</mx:GridRow>
