@@ -34,16 +34,20 @@
 				    borderStyle="none"
 				    editable="false" 
 				    paddingBottom="3" 
-				    paddingTop="3">
-					<mx:htmlText><![CDATA[<b><i>Dejan Dimić</i></b>
-<b>Current:</b>
-- Head of software development at Global Substation Solutions
-<b>Past</b>
-- Head of development at Europoint d.o.o.
-- Part time Ruby on Rails Software developer at Vast.com
-- Software developer – team leader at Teletrader Software AG
-
-http://www.linkedin.com/in/dejandimic]]></mx:htmlText>
+				    paddingTop="3"
+				    condenseWhite="true">
+					<mx:htmlText><![CDATA[
+    					<b><i>Dejan Dimić</i></b><br/>
+    					<b>Current:</b><br/>
+    					- Head of software development at Global Substation Solutions<br/>
+    					<b>Past</b><br/>
+    					- Head of development at Europoint d.o.o.<br/>
+    					- Part time Ruby on Rails Software developer at Vast.com<br/>
+    					- Software developer – team leader at Teletrader Software AG<br/>
+    					<br/>
+    					<a href='http://www.linkedin.com/in/dejandimic' target='_blank'>http://www.linkedin.com/in/dejandimic</a>
+    					]]>
+					</mx:htmlText>
 				</mx:TextArea>
 			</mx:GridItem>
 		</mx:GridRow>
@@ -58,9 +62,18 @@ http://www.linkedin.com/in/dejandimic]]></mx:htmlText>
 				    borderStyle="none" 
 				    editable="false" 
 				    paddingBottom="3" 
-				    paddingTop="3">				
+				    paddingTop="3"
+				    condenseWhite="true">				
 				    <mx:htmlText>
-				        <![CDATA[<b><i>Dragan Djordjević</i></b><br/><b>Current:</b> Flex Front End Designer at Global Substation Solutions<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sculptor<br/><b>Past:</b><br/>2006 - Finished postgraduate studies at the Faculty of Fine Arts in Belgrade, Sculpture Department,<br/>1998 - Graduated Mechanical Engineering in Belgrade<br/><br/>www.dragandjordjevic.com]]>
+				        <![CDATA[
+				        <b><i>Dragan Djordjević</i></b><br/>
+				        <b>Current:</b> Flex Front End Designer at Global Substation Solutions<br/>
+				        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sculptor<br/>
+				        <b>Past:</b><br/>
+				        2006 - Finished postgraduate studies at the Faculty of Fine Arts in Belgrade, Sculpture Department,<br/>
+				        1998 - Graduated Mechanical Engineering in Belgrade<br/><br/>
+				        <a href='www.dragandjordjevic.com' target='_blank'>www.dragandjordjevic.com</a>
+				        ]]>
 				    </mx:htmlText>
 				</mx:TextArea>
 			</mx:GridItem>
@@ -76,15 +89,20 @@ http://www.linkedin.com/in/dejandimic]]></mx:htmlText>
 				    borderStyle="none" 
 				    editable="false"
 				    paddingBottom="3" 
-				    paddingTop="3">
+				    paddingTop="3"
+				    condenseWhite="true">
 					<mx:htmlText>
-    					<![CDATA[<b>Open source</b> web project developed by <i>Dejan Dimić</i> and <i>Dragan Djordjević</i>. 
-
-<b>Technology:</b>
-Ruby (www.ruby-lang.org/en/), Flex (www.adobe.com/products/flex/) 
-<b>Free download source:</b>
-http://github.com/outout/out-website/tree/master
-]]></mx:htmlText>
+    					<![CDATA[
+    					<b>Open source</b> web project developed by <i>Dejan Dimić</i> and <i>Dragan Djordjević</i>.<br/>
+    					<br/>
+    					<b>Technology:</b><br/>
+    					Ruby (<a href='www.ruby-lang.org/en/' target='_blank'>www.ruby-lang.org/en/</a>), 
+    					Flex (<a href='www.adobe.com/products/flex/' target='_blank'>www.adobe.com/products/flex/</a>)<br/>
+    					<br/>
+    					<b>Free download source:</b><br/>
+    					<a href='http://github.com/outout/out-website/tree/master' target='_blank'>out-website</a>
+    					]]>
+    				</mx:htmlText>
 				</mx:TextArea>
 			</mx:GridItem>
 		</mx:GridRow>
