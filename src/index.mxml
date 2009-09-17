@@ -116,7 +116,8 @@
 			
 			private function completeHandler(event:Event):void 
 			{
-			    autortext.text = event.currentTarget.data as String;
+			    autortext.htmlText = event.currentTarget.data as String;
+			    autortext.invalidateDisplayList();
 			}
 
 			private function tree_labelFunc(item:Object):String 
@@ -407,10 +408,12 @@
                                 </mx:GridItem>
                             </mx:GridRow>
                         </mx:Grid>
-                        <mx:Text id="autortext"  
+                        <mx:TextArea id="autortext" 
+                            editable="false" 
                             text="Text" 
                             width="100%" 
-                            height="150" />
+                            height="150" 
+                            />
                     </mx:VDividedBox>
                     <mx:ControlBar>
                     </mx:ControlBar>
@@ -435,19 +438,5 @@
 		        borderColor="#B90488"/> 
 	    </mx:VBox>
 	</mx:ViewStack>
-	<!--
-	<mx:VBox 
-	    height="100%" 
-	    verticalAlign="top" 
-	    left="2" 
-	    top="2">		
-		<mx:HBox width="100%">
-			<mx:Spacer height="26" />
-		</mx:HBox>
-		<mx:HBox>
-		</mx:HBox>
-		<mx:Spacer  width="100%"/>
-	</mx:VBox>
-	-->	
 </mx:Application>
 
